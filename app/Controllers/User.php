@@ -6,7 +6,7 @@ use App\Controllers\BaseController;
 
 class User extends BaseController
 {
-    protected $helpers = ['form'];
+    // protected $helpers = ['form'];
     public function index()
     {
         //kirim view
@@ -15,16 +15,19 @@ class User extends BaseController
 
     public function addData()
     {
-        if (!$this->request->is('post')) {
-            return view('user/useradd');
-        }
 
-        $rules = [];
+        return view('user/user_add');
 
-        if (!$this->validate($rules)) {
-            return view('user/useradd');
-        }
+        // if (!$this->request->is('post')) {
+        //     return view('user/user_add');
+        // }
 
-        return view('success');
+        // $rules = [];
+
+        // if (!$this->validate($rules)) {
+        //     return view('user/user_add');
+        // }
+        // //if success
+        // return view('success');
     }
 }
