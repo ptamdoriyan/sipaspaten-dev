@@ -10,4 +10,4 @@ $routes->post('login', 'Auth::login');
 $routes->get('user', 'User');
 $routes->get('user/add', 'User::addData');
 $routes->post('user/add', 'User::addData');
-$routes->get('file/(:num)', 'BePutusan::Download/$1');
+$routes->get('file/(:num)', 'User::Download/$1');

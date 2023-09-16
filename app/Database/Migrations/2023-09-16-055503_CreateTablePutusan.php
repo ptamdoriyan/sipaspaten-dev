@@ -27,6 +27,10 @@ class CreateTablePutusan extends Migration
                     'constraint'     => '100'
                 ],
                 'link_putusan'       => [
+                    'type'           => 'INT',
+                    'constraint'     => '255'
+                ],
+                'nama_file'       => [
                     'type'           => 'VARCHAR',
                     'constraint'     => '255'
                 ],

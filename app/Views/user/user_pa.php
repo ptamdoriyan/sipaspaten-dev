@@ -1,4 +1,8 @@
+<?php //dd($putusan[0]['link_putusan']) 
+?>
 <?= $this->extend('layout/user_layout') ?>
+
+
 
 <?= $this->section('usercontent') ?>
 
@@ -114,7 +118,7 @@
                 </div>
             </div>
             <div class="table-responsive">
-                <table class="table align-item-center">
+                <table class="table align-item-center" id="myTable">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -125,15 +129,22 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>126/Pdt.G/2023/Pa.Bitg</td>
-                            <td>22/08/2023</td>
-                            <td>
-                                <a href="" class="btn btn-sm btn-outline-warning">View</a>
-                            </td>
-                            <td>Approved</td>
-                        </tr>
+                        <?php foreach ($putusan as $p) : ?>
+                            <?php $i = 1; ?>
+                            <tr>
+                                <td>$i</td>
+                                <td><?= $p['nomor_putusan'] ?></td>
+                                <td><?= $p['tgl_upload'] ?></td>
+                                <td>
+                                    <a href="file/<?= $p['link_putusan'] ?>" class="btn btn-sm btn-outline-warning">View</a>
+                                    <a href="" class="btn btn-sm btn-outline-danger">Delete</a>
+                                </td>
+                                <td>
+                                    <?= $p['status'] == 1 ? 'Uploaded' : 'Valid' ?>
+                                </td>
+                            </tr>
+                            <?php $i++ ?>
+                        <?php endforeach ?>
                         <tr>
                             <td>2</td>
                             <td>129/Pdt.G/2023/Pa.Bitg</td>
@@ -165,6 +176,8 @@
 
 <?= $this->section('javascript') ?>
 <script>
+    let table = new DataTable('#myTable');
+
     var ctx1 = document.getElementById("chart-line").getContext("2d");
 
     var gradientStroke1 = ctx1.createLinearGradient(0, 230, 0, 50);

@@ -8,14 +8,14 @@
             <h3>Upload Data Putusan</h3>
         </div>
         <div class="card-body">
-            <form class="row g-3" method="POST">
+            <form class="row g-3" method="POST" enctype="multipart/form-data">
                 <div class="col-md-6">
                     <label for="inputEmail4" class="form-label">Nomor Putusan</label>
                     <input type="text" class="form-control" id="inputNomorPutusan" name="nomorputusan" required autofocus>
                 </div>
                 <div class="col-md-6">
                     <label for="formFileSm" class="form-label">Upload Putusan</label>
-                    <input class="form-control form-control-sm" id="formFileSm" type="file" name="uploadputusan">
+                    <input class="form-control form-control-sm" id="formFileSm" type="file" name="berkas">
                 </div>
 
                 <div class="col-12">

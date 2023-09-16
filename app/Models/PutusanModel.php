@@ -17,6 +17,7 @@ class PutusanModel extends Model
         'id_uniq',
         'nomor_putusan',
         'link_putusan',
+        'nama_file',
         'status'
 
     ];

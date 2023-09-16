@@ -38,6 +38,8 @@ $session = session();
     <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- CSS Files -->
     <link id="pagestyle" href="../assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
+    <!-- css datatables -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
 </head>
 
 <body class="g-sidenav-show  bg-gray-100">
@@ -108,6 +110,11 @@ $session = session();
     <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
     <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
     <script src="../assets/js/plugins/chartjs.min.js"></script>
+
+    <!-- //jquery -->
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <!-- datatables -->
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
 
     <?= $this->renderSection('javascript') ?>
 

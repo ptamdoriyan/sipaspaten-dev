@@ -47,7 +47,7 @@ class Auth extends BaseController
                             'name' => $user['nama'],
                             'telp' => $user['whatsapp'],
                             'role_id' => $user['role_id'],
-                            'uniq_id' => $user['id_uniq']
+                            'id_uniq' => $user['id_uniq']
                         ];
                         //simpan session data
                         $session->set($data);
