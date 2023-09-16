@@ -69,7 +69,7 @@
                 <div class="row">
                     <div class="col-8">
                         <div class="numbers">
-                            <button class="btn btn-primary">Add Data</button>
+                            <a href="user/add/" class="btn btn-primary">Add Data</a>
                         </div>
                     </div>
                     <div class="col-4 text-end">
@@ -110,7 +110,7 @@
             <div class="card-header pb-0 p-3">
                 <div class="d-flex justify-content-between">
                     <h6 class="mb-2">Daftar Putusan</h6>
-                    <button class="btn btn-sm btn-primary">Add Data</button>
+                    <a href="user/add/" class="btn btn-primary">Add Data</a>
                 </div>
             </div>
             <div class="table-responsive">
