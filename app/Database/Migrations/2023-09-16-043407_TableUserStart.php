@@ -37,7 +37,7 @@ class TableUserStart extends Migration
                 ],
                 'password'       => [
                     'type'           => 'VARCHAR',
-                    'constraint'     => '15'
+                    'constraint'     => '255'
                 ],
                 'role_id'       => [
                     'type'           => 'INT',
