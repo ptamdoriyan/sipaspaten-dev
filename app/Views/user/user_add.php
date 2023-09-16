@@ -9,6 +9,7 @@
         </div>
         <div class="card-body">
             <form class="row g-3" method="POST" enctype="multipart/form-data">
+                <?= csrf_field() ?>
                 <div class="col-md-6">
                     <label for="inputEmail4" class="form-label">Nomor Putusan</label>
                     <input type="text" class="form-control" id="inputNomorPutusan" name="nomorputusan" required autofocus>
