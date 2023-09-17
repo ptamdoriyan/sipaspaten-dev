@@ -14,19 +14,28 @@ class User extends BaseController
         $model = new PutusanModel();
         //ambil data di database
         $id_uniq = session('id_uniq');
-        $data['putusan'] = $model->orderBy('id_putusan', 'ASC')->where('id_uniq', $id_uniq)->findAll();
-
-
+        $data['putusan'] = $model->orderBy('tgl_upload', 'DESC')->where('id_uniq', $id_uniq)->findAll();
         //kirim view
         return view('user/user_pa', $data);
     }
 
     public function view()
     {
+        $model = new PutusanModel();
+        $id_uniq = session('id_uniq');
+
+        for ($i = 0; $i < 7; $i++) {
+            // # code...
+            $tanggaljudul = date('M', strtotime("+$i month"));
+            $tanggalisi = date("m") + $i;
+            $hasilhitung[$tanggaljudul] = $model->SumDataPerPA($id_uniq, $tanggalisi);
+        }
+        print_r(json_encode($hasilhitung));
+        die;
     }
 
 
-
+    //add data
     public function addData()
     {
         $model = new PutusanModel();
@@ -71,6 +80,16 @@ class User extends BaseController
         return redirect()->to('user');
     }
 
+    //hapus data
+    public function delete($id_uniq)
+    {
+        $model = new PutusanModel();
+        $model->where('link_putusan', $id_uniq)->delete();
+        return redirect()->to('user');
+    }
+
+
+    // download dokumen
     function download($id)
     {
         $berkas = new PutusanModel();

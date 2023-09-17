@@ -45,4 +45,12 @@ class PutusanModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+
+    public function SumDataPerPA($id_uniq, $bulan)
+    {
+        $db = db_connect();
+        $query = "SELECT * FROM `putusan` WHERE id_uniq = $id_uniq AND month(tgl_upload) = $bulan";
+        return $db->query($query)->getNumRows();
+    }
 }

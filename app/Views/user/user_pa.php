@@ -129,42 +129,25 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <?php $i = 1; ?>
                         <?php foreach ($putusan as $p) : ?>
-                            <?php $i = 1; ?>
                             <tr>
-                                <td>$i</td>
+                                <td><?= $i ?></td>
                                 <td><?= $p['nomor_putusan'] ?></td>
                                 <td><?= $p['tgl_upload'] ?></td>
                                 <td>
                                     <a href="file/<?= $p['link_putusan'] ?>" class="btn btn-sm btn-outline-warning">View</a>
-                                    <a href="" class="btn btn-sm btn-outline-danger">Delete</a>
-                                </td>
+                                    <?php if ($p['status'] == 1) : ?>
+                                        <a href="<?= 'file/' . $p['link_putusan'] . '/delete' ?>" class="btn btn-sm btn-outline-danger" onclick="return confirm('Yakin Mendelete Data?')">Delete</a>
+                                    <?php endif ?>
+                                </td>l
                                 <td>
-                                    <?= $p['status'] == 1 ? 'Uploaded' : 'Valid' ?>
+                                    <?= $p['status'] == 1 ? 'Uploaded' : 'Confirmed' ?>
                                 </td>
                             </tr>
                             <?php $i++ ?>
                         <?php endforeach ?>
-                        <tr>
-                            <td>2</td>
-                            <td>129/Pdt.G/2023/Pa.Bitg</td>
-                            <td>23/08/2023</td>
-                            <td>
-                                <a href="" class="btn btn-sm btn-outline-warning">View</a>
-                                <a href="" class="btn btn-sm btn-outline-danger">Delete</a>
-                            </td>
-                            <td>Uploaded</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>130/Pdt.G/2023/Pa.Bitg</td>
-                            <td>26/08/2023</td>
-                            <td>
-                                <a href="" class="btn btn-sm btn-outline-warning">View</a>
-                                <a href="" class="btn btn-sm btn-outline-danger">Delete</a>
-                            </td>
-                            <td>Uploaded</td>
-                        </tr>
+
                     </tbody>
                 </table>
             </div>
@@ -185,12 +168,17 @@
     gradientStroke1.addColorStop(1, 'rgba(94, 114, 228, 0.2)');
     gradientStroke1.addColorStop(0.2, 'rgba(94, 114, 228, 0.0)');
     gradientStroke1.addColorStop(0, 'rgba(94, 114, 228, 0)');
-    new Chart(ctx1, {
+
+    // ajax
+
+
+
+    let myChart = new Chart(ctx1, {
         type: "line",
         data: {
-            labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+            labels: [],
             datasets: [{
-                label: "Mobile apps",
+                label: "Upload Putusan",
                 tension: 0.4,
                 borderWidth: 0,
                 pointRadius: 0,
@@ -198,7 +186,7 @@
                 backgroundColor: gradientStroke1,
                 borderWidth: 3,
                 fill: true,
-                data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
+                data: [],
                 maxBarThickness: 6
 
             }],
@@ -258,6 +246,21 @@
                 },
             },
         },
+    });
+
+    $.ajax({
+        type: "GET",
+        url: "http://localhost:8080/user/view",
+        data: "data",
+        dataType: "json",
+        success: function(response) {
+            console.log(response);
+            $.each(response, function(i, val) {
+                myChart.data.labels.push(i);
+                myChart.data.datasets[0].data.push(val);
+                myChart.update();
+            });
+        }
     });
 </script>
 <?= $this->endSection() ?>
