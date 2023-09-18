@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\PutusanModel;
+use App\Models\LogsModel;
 
 class User extends BaseController
 {

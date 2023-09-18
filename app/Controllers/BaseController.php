@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\LogsModel;
 use CodeIgniter\Controller;
 use CodeIgniter\HTTP\CLIRequest;
 use CodeIgniter\HTTP\IncomingRequest;
@@ -46,10 +47,13 @@ abstract class BaseController extends Controller
     /**
      * @return void
      */
+
+    public $logmodel;
     public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger)
     {
         // Do Not Edit This Line
         parent::initController($request, $response, $logger);
+        $this->logmodel = new \App\Models\LogsModel();
 
         // Preload any models, libraries, etc, here.
 
