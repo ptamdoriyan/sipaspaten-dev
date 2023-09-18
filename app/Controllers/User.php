@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\PutusanModel;
-use App\Models\LogsModel;
+use App\Models\UsersModel;
 
 class User extends BaseController
 {
@@ -35,6 +35,15 @@ class User extends BaseController
         return view('user/user_pa', $data);
     }
 
+
+    //user Profile
+    public function profile()
+    {
+        $user = new UsersModel();
+        $data['user'] = $user->where('id_uniq', session('id_uniq'))->findAll();
+        return view('user/user_profile', $data);
+    }
+
     public function view()
     {
         $model = new PutusanModel();
@@ -55,9 +64,6 @@ class User extends BaseController
     public function addData()
     {
         $model = new PutusanModel();
-        // $session = session();
-
-        // return view('user/user_add');
 
         if (!$this->request->is('post')) {
             return view('user/user_add');

@@ -7,8 +7,36 @@ use App\Models\UsersModel;
 
 class Auth extends BaseController
 {
+
+
+
     public function index()
     {
+
+        //check session
+        switch (session('role_id')) {
+            case '1':
+                # code...
+                return redirect()->to('admin');
+                break;
+            case '2':
+                # code...
+                return redirect()->to('pta');
+                break;
+            case '3':
+                # code...
+                return redirect()->to('bph');
+                break;
+            case '4':
+                # code...
+                return redirect()->to('user');
+                break;
+
+            default:
+                # code...
+
+                break;
+        }
         //
         return view('auth/login_view');
     }

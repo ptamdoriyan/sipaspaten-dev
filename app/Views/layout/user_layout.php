@@ -63,11 +63,18 @@ $session = session();
                     </div>
                     <ul class="navbar-nav  justify-content-end">
                         <li class="nav-item d-flex align-items-center">
-                            <a href="logout" class="nav-link text-white font-weight-bold px-0">
-                                <span class="d-sm-inline d-none">Logout</span>
+                            <a href="user/profile" class="nav-link text-white font-weight-bold px-0">
+                                <span class="d-sm-inline d-none ms-3">Profile</span>
                             </a>
                         </li>
+                        <li class="nav-item d-flex align-items-center">
+                            <a href="logout" class="nav-link text-white font-weight-bold px-0">
+                                <span class="d-sm-inline d-none ms-3">Logout</span>
+                            </a>
+                        </li>
+
                     </ul>
+
                 </div>
             </div>
         </nav>
