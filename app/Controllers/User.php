@@ -90,6 +90,7 @@ class User extends BaseController
         $model = new PutusanModel();
         $model->where('link_putusan', $link_putusan)->delete();
         $this->logmodel->insert(['id_uniq' => $id_uniq, 'action' => 'Delete Data']);
+        $this->session->setFlashdata('message', 'Dihapus');
         return redirect()->to('user');
     }
 

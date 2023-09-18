@@ -146,7 +146,7 @@ $session = session();
                                 <td>
                                     <a href="file/<?= $p['link_putusan'] ?>" class="btn btn-sm btn-outline-warning">View</a>
                                     <?php if ($p['status'] == 1) : ?>
-                                        <a href="<?= 'file/' . $p['link_putusan'] . '/' . $p['id_uniq'] . '/delete' ?>" class="btn btn-sm btn-outline-danger" onclick="return confirm('Yakin Mendelete Data?')">Delete</a>
+                                        <a href="<?= 'file/' . $p['link_putusan'] . '/' . $p['id_uniq'] . '/delete' ?>" class="btn btn-sm btn-outline-danger tmblDelete">Delete</a>
                                     <?php endif ?>
                                 </td>l
                                 <td>
@@ -268,7 +268,7 @@ $session = session();
         }
     });
 
-    //sweetalert
+    //sweetalert add data
     const flasdata = $('.flash-data').data('flashdata');
     console.log(`flashdata ${flasdata}`);
     if (flasdata) {
@@ -278,5 +278,29 @@ $session = session();
             'success'
         );
     }
+
+    // sweet alert delete data
+    $('.tmblDelete').on('click', function(e) {
+        //matikan depe default
+        e.preventDefault();
+        //ambil attribut
+        const href = $(this).attr('href');
+
+        //jalankan swal
+        Swal.fire({
+            title: 'Apakah Anda Yakin?',
+            text: "Data Putusan akan dihapus",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.location.href = href;
+            }
+        })
+
+    });
 </script>
 <?= $this->endSection() ?>
