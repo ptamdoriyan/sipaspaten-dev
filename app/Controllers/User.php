@@ -24,7 +24,7 @@ class User extends BaseController
         $model = new PutusanModel();
         $id_uniq = session('id_uniq');
 
-        for ($i = 0; $i < 7; $i++) {
+        for ($i = 0; $i < 4; $i++) {
             // # code...
             $tanggaljudul = date('M', strtotime("+$i month"));
             $tanggalisi = date("m") + $i;
