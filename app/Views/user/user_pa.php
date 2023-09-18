@@ -1,5 +1,11 @@
 <?php //dd($putusan[0]['link_putusan']) 
+
+// var_dump($putusan);
+// die;
+
+
 ?>
+
 <?= $this->extend('layout/user_layout') ?>
 
 
@@ -15,7 +21,7 @@
                         <div class="numbers">
                             <p class="text-sm mb-0 text-uppercase font-weight-bold">Uploaded</p>
                             <h5 class="font-weight-bolder">
-                                3 Putusan
+                                <?= count($putusan) ?> Putusan
                             </h5>
                         </div>
                     </div>
@@ -36,7 +42,7 @@
                         <div class="numbers">
                             <p class="text-sm mb-0 text-uppercase font-weight-bold">Approved</p>
                             <h5 class="font-weight-bolder">
-                                1 Putusan
+                                <?= count($putusan_aproved) ?> Putusan
                             </h5>
                         </div>
                     </div>

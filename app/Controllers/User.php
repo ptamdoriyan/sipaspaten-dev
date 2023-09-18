@@ -15,6 +15,7 @@ class User extends BaseController
         //ambil data di database
         $id_uniq = session('id_uniq');
         $data['putusan'] = $model->orderBy('tgl_upload', 'DESC')->where('id_uniq', $id_uniq)->findAll();
+        $data['putusan_aproved'] = $model->orderBy('tgl_upload', 'DESC')->where(['id_uniq' => $id_uniq, 'status' => 2])->findAll();
         //kirim view
         return view('user/user_pa', $data);
     }
