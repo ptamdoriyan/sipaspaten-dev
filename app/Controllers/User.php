@@ -78,15 +78,16 @@ class User extends BaseController
         $model->insert($data);
         //pindahkan berkas
         $databerkas->move('uploads/putusan/', $filename);
-
+        $this->logmodel->insert(['id_uniq' => $data['id_uniq'], 'action' => 'Upload Data']);
         return redirect()->to('user');
     }
 
     //hapus data
-    public function delete($id_uniq)
+    public function delete($link_putusan, $id_uniq)
     {
         $model = new PutusanModel();
-        $model->where('link_putusan', $id_uniq)->delete();
+        $model->where('link_putusan', $link_putusan)->delete();
+        $this->logmodel->insert(['id_uniq' => $id_uniq, 'action' => 'Delete Data']);
         return redirect()->to('user');
     }
 

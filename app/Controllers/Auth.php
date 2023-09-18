@@ -52,14 +52,18 @@ class Auth extends BaseController
                         //simpan session data
                         $session->set($data);
                         if ($user['role_id'] == 1) {
+                            $this->logmodel->insert(['id_uniq' => $data['id_uniq'], 'action' => 'Login']);
                             return redirect()->to('admin');
                         }
                         if ($user['role_id'] == 2) {
+                            $this->logmodel->insert(['id_uniq' => $data['id_uniq'], 'action' => 'Login']);
                             return redirect()->to('pta');
                         }
                         if ($user['role_id'] == 3) {
+                            $this->logmodel->insert(['id_uniq' => $data['id_uniq'], 'action' => 'Login']);
                             return redirect()->to('bhp');
                         } else {
+                            $this->logmodel->insert(['id_uniq' => $data['id_uniq'], 'action' => 'Login']);
                             return redirect()->to('user');
                         }
                     } else {

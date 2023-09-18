@@ -144,7 +144,7 @@
                                 <td>
                                     <a href="file/<?= $p['link_putusan'] ?>" class="btn btn-sm btn-outline-warning">View</a>
                                     <?php if ($p['status'] == 1) : ?>
-                                        <a href="<?= 'file/' . $p['link_putusan'] . '/delete' ?>" class="btn btn-sm btn-outline-danger" onclick="return confirm('Yakin Mendelete Data?')">Delete</a>
+                                        <a href="<?= 'file/' . $p['link_putusan'] . '/' . $p['id_uniq'] . '/delete' ?>" class="btn btn-sm btn-outline-danger" onclick="return confirm('Yakin Mendelete Data?')">Delete</a>
                                     <?php endif ?>
                                 </td>l
                                 <td>

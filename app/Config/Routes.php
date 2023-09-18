@@ -12,4 +12,4 @@ $routes->get('user/view', 'User::view');
 $routes->get('user/add', 'User::addData');
 $routes->post('user/add', 'User::addData');
 $routes->get('file/(:num)', 'User::Download/$1');
-$routes->get('file/(:num)/delete', 'User::delete/$1');
+$routes->get('file/(:num)/(:num)/delete', 'User::delete/$1/$2');
