@@ -9,8 +9,21 @@ use App\Models\LogsModel;
 class User extends BaseController
 {
     protected $helpers = ['form'];
+
+    public function __construct()
+    {
+
+        if (session('id_uniq') == null) {
+            header('Location: ' . base_url('/'));
+            exit();
+        }
+    }
+
     public function index()
     {
+        // if (!isset($_SESSION['name'])) {
+        //     return redirect()->to('/');
+        // }
         // inisiasi model
         $model = new PutusanModel();
         //ambil data di database

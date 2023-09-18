@@ -82,4 +82,18 @@ class Auth extends BaseController
         //jika tidak lolos validasi
         return redirect()->to('/');
     }
+
+
+    public function logout()
+    {
+        $data = [
+            'email',
+            'name',
+            'telp',
+            'role_id',
+            'id_uniq',
+        ];
+        $this->session->remove($data);
+        return redirect()->to('/');
+    }
 }

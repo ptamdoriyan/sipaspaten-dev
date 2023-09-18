@@ -1,9 +1,11 @@
 <?php //dd($putusan[0]['link_putusan']) 
 
 // var_dump($putusan);
+
 // die;
 
 $session = session();
+// dd($session);
 ?>
 
 <?= $this->extend('layout/user_layout') ?>
