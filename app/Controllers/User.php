@@ -17,6 +17,7 @@ class User extends BaseController
             header('Location: ' . base_url('/'));
             exit();
         }
+        helper(['whatsapp_helper']);
     }
 
     public function index()
@@ -94,6 +95,7 @@ class User extends BaseController
         $this->logmodel->insert(['id_uniq' => $data['id_uniq'], 'action' => 'Upload Data']);
         //buat flash data
         $this->session->setFlashdata('message', 'Diupload');
+        sendMessage('6282346909192', session('name'), 'Mengupload');
         return redirect()->to('user');
     }
 
@@ -104,6 +106,7 @@ class User extends BaseController
         $model->where('link_putusan', $link_putusan)->delete();
         $this->logmodel->insert(['id_uniq' => $id_uniq, 'action' => 'Delete Data']);
         $this->session->setFlashdata('message', 'Dihapus');
+        sendMessage('6281244554483', session('name'), 'Menghapus');
         return redirect()->to('user');
     }
 
