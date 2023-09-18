@@ -3,7 +3,7 @@
 // var_dump($putusan);
 // die;
 
-
+$session = session();
 ?>
 
 <?= $this->extend('layout/user_layout') ?>
@@ -11,6 +11,8 @@
 
 
 <?= $this->section('usercontent') ?>
+
+<div class="flash-data" data-flashdata="<?= $session->getFlashdata('message'); ?>"></div>
 
 <div class="row">
     <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
@@ -175,10 +177,7 @@
     gradientStroke1.addColorStop(0.2, 'rgba(94, 114, 228, 0.0)');
     gradientStroke1.addColorStop(0, 'rgba(94, 114, 228, 0)');
 
-    // ajax
-
-
-
+    //chart
     let myChart = new Chart(ctx1, {
         type: "line",
         data: {
@@ -253,7 +252,7 @@
             },
         },
     });
-
+    //ajax for chart
     $.ajax({
         type: "GET",
         url: "http://localhost:8080/user/view",
@@ -268,5 +267,16 @@
             });
         }
     });
+
+    //sweetalert
+    const flasdata = $('.flash-data').data('flashdata');
+    console.log(`flashdata ${flasdata}`);
+    if (flasdata) {
+        Swal.fire(
+            'Data Putusan!',
+            `berhasil ${flasdata}`,
+            'success'
+        );
+    }
 </script>
 <?= $this->endSection() ?>

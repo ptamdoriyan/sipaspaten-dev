@@ -79,6 +79,8 @@ class User extends BaseController
         //pindahkan berkas
         $databerkas->move('uploads/putusan/', $filename);
         $this->logmodel->insert(['id_uniq' => $data['id_uniq'], 'action' => 'Upload Data']);
+        //buat flash data
+        $this->session->setFlashdata('message', 'Diupload');
         return redirect()->to('user');
     }
 
