@@ -25,7 +25,7 @@ $session = session();
                         <div class="numbers">
                             <p class="text-sm mb-0 text-uppercase font-weight-bold">Uploaded</p>
                             <h5 class="font-weight-bolder">
-                                <?= count($putusan) ?> Putusan
+                                <?= count($putusan) ?> Penetapan
                             </h5>
                         </div>
                     </div>
@@ -46,7 +46,7 @@ $session = session();
                         <div class="numbers">
                             <p class="text-sm mb-0 text-uppercase font-weight-bold">Approved</p>
                             <h5 class="font-weight-bolder">
-                                <?= count($putusan_aproved) ?> Putusan
+                                <?= count($putusan_aproved) ?> Penetapan
                             </h5>
                         </div>
                     </div>
@@ -100,7 +100,7 @@ $session = session();
     <div class="col-lg-7 mb-lg-0 mb-4">
         <div class="card z-index-2 h-100">
             <div class="card-header pb-0 pt-3 bg-transparent">
-                <h6 class="text-capitalize">Ringkasan Upload Putusan</h6>
+                <h6 class="text-capitalize">Ringkasan Upload Penetapan</h6>
                 <p class="text-sm mb-0">
                     <span class="font-weight-bold"><?= date('Y'); ?></span>
                 </p>

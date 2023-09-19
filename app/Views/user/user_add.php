@@ -5,17 +5,17 @@
 <div class="container mt-5">
     <div class="card bg-white p-4">
         <div class="card-header">
-            <h3>Upload Data Putusan</h3>
+            <h3>Upload Data Penetapan</h3>
         </div>
         <div class="card-body">
             <form class="row g-3" method="POST" enctype="multipart/form-data">
                 <?= csrf_field() ?>
                 <div class="col-md-6">
-                    <label for="inputEmail4" class="form-label">Nomor Putusan</label>
+                    <label for="inputEmail4" class="form-label">Nomor Penetapan</label>
                     <input type="text" class="form-control" id="inputNomorPutusan" name="nomorputusan" required autofocus>
                 </div>
                 <div class="col-md-6">
-                    <label for="formFileSm" class="form-label">Upload Putusan</label>
+                    <label for="formFileSm" class="form-label">Upload Penetapan</label>
                     <input class="form-control form-control-sm" id="formFileSm" type="file" name="berkas">
                 </div>
 
