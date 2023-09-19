@@ -63,7 +63,7 @@ $session = session();
                     </div>
                     <ul class="navbar-nav  justify-content-end">
                         <li class="nav-item d-flex align-items-center">
-                            <a href="user/profile" class="nav-link text-white font-weight-bold px-0">
+                            <a href="profile" class="nav-link text-white font-weight-bold px-0">
                                 <span class="d-sm-inline d-none ms-3">Profile</span>
                             </a>
                         </li>

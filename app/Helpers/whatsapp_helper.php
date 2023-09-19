@@ -17,7 +17,8 @@ function sendMessage($target, $name, $message)
         CURLOPT_CUSTOMREQUEST => 'POST',
         CURLOPT_POSTFIELDS => array(
             'target' => $target,
-            'message' => "Sipaspaten ---- $name telah $message Putusan",
+            'message' => "*Sipaspaten* ----
+$name telah $message Putusan",
         ),
         CURLOPT_HTTPHEADER => array(
             "Authorization: $token"

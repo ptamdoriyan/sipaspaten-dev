@@ -35,15 +35,6 @@ class User extends BaseController
         return view('user/user_pa', $data);
     }
 
-
-    //user Profile
-    public function profile()
-    {
-        $user = new UsersModel();
-        $data['user'] = $user->where('id_uniq', session('id_uniq'))->findAll();
-        return view('user/user_profile', $data);
-    }
-
     public function view()
     {
         $model = new PutusanModel();
@@ -112,7 +103,7 @@ class User extends BaseController
         $model->where('link_putusan', $link_putusan)->delete();
         $this->logmodel->insert(['id_uniq' => $id_uniq, 'action' => 'Delete Data']);
         $this->session->setFlashdata('message', 'Dihapus');
-        sendMessage('6281244554483', session('name'), 'Menghapus');
+        sendMessage('6282346909192', session('name'), 'Menghapus');
         return redirect()->to('user');
     }
 
