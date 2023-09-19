@@ -17,3 +17,7 @@ $routes->put('profile/editpassword', 'Profile::editPassword');
 $routes->put('profile/editprofile', 'Profile::editProfile');
 $routes->get('file/(:num)', 'User::Download/$1');
 $routes->get('file/(:num)/(:num)/delete', 'User::delete/$1/$2');
+
+
+//bhp
+$routes->get('bhp', 'Bhp');

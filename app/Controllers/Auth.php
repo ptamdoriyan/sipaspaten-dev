@@ -7,9 +7,6 @@ use App\Models\UsersModel;
 
 class Auth extends BaseController
 {
-
-
-
     public function index()
     {
 

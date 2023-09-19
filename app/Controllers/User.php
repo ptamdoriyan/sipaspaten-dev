@@ -13,11 +13,8 @@ class User extends BaseController
     public function __construct()
     {
 
-        if (session('id_uniq') == null) {
-            header('Location: ' . base_url('/'));
-            exit();
-        }
-        helper(['whatsapp_helper']);
+        helper(['whatsapp_helper', 'login_helper']);
+        checkLogin(4, session('role_id'));
     }
 
     public function index()
