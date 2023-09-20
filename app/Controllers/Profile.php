@@ -10,7 +10,7 @@ class Profile extends BaseController
 
     public function __construct()
     {
-        if (session('id_uniq') == null) {
+        if (session('id_uniq_user') == null) {
             header('Location: ' . base_url('/'));
             exit();
         }
@@ -20,7 +20,7 @@ class Profile extends BaseController
     {
         //
         $user = new UsersModel();
-        $data['user'] = $user->where('id_uniq', session('id_uniq'))->findAll();
+        $data['user'] = $user->where('id_uniq', session('id_uniq_user'))->findAll();
         return view('profile/user_profile', $data);
     }
     public function editProfile()
@@ -34,7 +34,7 @@ class Profile extends BaseController
         ];
 
         $usermodel->update($id_user, $data);
-        $this->logmodel->insert(['id_uniq' => session('id_uniq'), 'action' => 'Update Profile']);
+        $this->logmodel->insert(['id_uniq_user' => session('id_uniq_user'), 'action' => 'Update Profile']);
         $this->session->setFlashdata('message', 'Diubah');
         return redirect()->to('/profile');
     }
@@ -42,7 +42,7 @@ class Profile extends BaseController
     public function editPassword()
     {
         $usermodel = new UsersModel();
-        $data['user'] = $usermodel->where('id_uniq', session('id_uniq'))->first();
+        $data['user'] = $usermodel->where('id_uniq', session('id_uniq_user'))->first();
 
 
         $id_user = $this->request->getVar('id_user');
@@ -68,7 +68,7 @@ class Profile extends BaseController
                 ];
 
                 $usermodel->update($id_user, $data);
-                $this->logmodel->insert(['id_uniq' => session('id_uniq'), 'action' => 'Update Password']);
+                $this->logmodel->insert(['id_uniq_user' => session('id_uniq_user'), 'action' => 'Update Password']);
                 $this->session->setFlashdata('message', 'Diubah');
                 return redirect()->to('/profile');
             }

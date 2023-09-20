@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
-use App\Models\PutusanModel;
+use App\Models\PenetapanModel;
 
 class Bhp extends BaseController
 {
@@ -17,25 +17,25 @@ class Bhp extends BaseController
     public function index()
     {
         //
-        $putusanModel = new PutusanModel();
-        $data['putusan'] = $putusanModel->bhpGetDataAll();
-        $data['putusan_aproved'] = $putusanModel->orderBy('tgl_upload', 'DESC')->where(['status' => 2])->findAll();
+        $penetapanModel = new PenetapanModel();
+        $data['penetapan'] = $penetapanModel->bhpGetDataAll();
+        $data['penetapan_aproved'] = $penetapanModel->orderBy('tgl_upload', 'DESC')->where(['status' => 2])->findAll();
         // $data['allPutusan'] = $putusanModel->bhpGetDataAll();
         return view('bhp/user_bhp', $data);
     }
 
-    public function addData($link_putusan)
+    public function addData($penetapan_uniq)
     {
-        $putusanModel = new PutusanModel();
-        $data['penetapan'] = $putusanModel->bhpGetDatabyLink($link_putusan);
+        $penetapanModel = new PenetapanModel();
+        $data['penetapan'] = $penetapanModel->bhpGetDatabyLink($penetapan_uniq);
         return view('bhp/bhp_add', $data);
     }
 
     public function bhPutusan()
     {
-        $putusanModel = new PutusanModel();
-        $link_putusan = $this->request->getVar('link_putusan');
-        $data['penetapan'] = $putusanModel->bhpGetDatabyLink($link_putusan);
+        $penetapanModel = new PenetapanModel();
+        $putusan_uniq = $this->request->getVar('putusan_uniq');
+        $data['penetapan'] = $penetapanModel->bhpGetDatabyLink($putusan_uniq);
 
         $validation =  \Config\Services::validation();
         $validation->setRules([
@@ -45,30 +45,14 @@ class Bhp extends BaseController
         if ($isDataValid) {
             # code...
 
-            $nomor_ba = $this->request->getVar('nomor_ba');
-            $status = 2;
-            $databerkas = $this->request->getFile('berita_acara');
-            $filename = $databerkas->getRandomName();
-            $field = [
-                'nama_file_ba' => $filename,
-                'nomor_ba' => $nomor_ba,
-                'status' => $status
-            ];
-            $putusanModel->update($data['penetapan']['id_putusan'], $field);
-            $databerkas->move('uploads/berita_acara/', $filename);
-            $this->logmodel->insert(['id_uniq' => session('id_uniq'), 'action' => 'Upload Berita Acara']);
-            $this->session->setFlashdata('message', 'Diupload');
-            $nomorPutusan = $data['penetapan']['nomor_putusan'];
-            sendMessage($data['penetapan']['whatsapp'], session('name'), "Mengupload Berita Acara Untuk Penetapan Nomor $nomorPutusan");
-            return redirect()->to('/bhp');
         }
     }
 
 
-    function download($link_putusan)
+    function download($putusan_uniq)
     {
-        $berkas = new PutusanModel();
-        $data = $berkas->where('link_putusan', $link_putusan)->first();
+        $penetapanModel = new PenetapanModel();
+        $data = $penetapanModel->where('putusan_uniq', $putusan_uniq)->first();
         // dd($data);
         // var_dump($data);
         // echo $data['link_dock'];

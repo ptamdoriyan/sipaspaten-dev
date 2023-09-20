@@ -1,11 +1,5 @@
-<?php //dd($putusan[0]['link_putusan']) 
-
-// var_dump($putusan);
-
-// die;
-
+<?php
 $session = session();
-// dd($session);
 ?>
 
 <?= $this->extend('layout/user_layout') ?>
@@ -25,7 +19,7 @@ $session = session();
                         <div class="numbers">
                             <p class="text-sm mb-0 text-uppercase font-weight-bold">Uploaded</p>
                             <h5 class="font-weight-bolder">
-                                <?= count($putusan) ?> Penetapan
+                                <?= count($penetapan) ?> Penetapan
                             </h5>
                         </div>
                     </div>
@@ -46,7 +40,7 @@ $session = session();
                         <div class="numbers">
                             <p class="text-sm mb-0 text-uppercase font-weight-bold">Approved</p>
                             <h5 class="font-weight-bolder">
-                                <?= count($putusan_aproved) ?> Penetapan
+                                <?= count($penetapan_approved) ?> Penetapan
                             </h5>
                         </div>
                     </div>
@@ -123,7 +117,7 @@ $session = session();
         <div class="card ">
             <div class="card-header pb-0 p-3">
                 <div class="d-flex justify-content-between">
-                    <h6 class="mb-2">Daftar Putusan</h6>
+                    <h6 class="mb-2">Daftar Penetapan</h6>
                     <a href="user/add" class="btn btn-primary">Add Data</a>
                 </div>
             </div>
@@ -140,15 +134,15 @@ $session = session();
                     </thead>
                     <tbody>
                         <?php $i = 1; ?>
-                        <?php foreach ($putusan as $p) : ?>
+                        <?php foreach ($penetapan as $p) : ?>
                             <tr>
                                 <td><?= $i ?></td>
-                                <td><?= $p['nomor_putusan'] ?></td>
+                                <td><?= $p['nomor_penetapan'] ?></td>
                                 <td><?= $p['tgl_upload'] ?></td>
                                 <td>
-                                    <a href="file/<?= $p['link_putusan'] ?>" class="btn btn-sm btn-outline-warning">View</a>
+                                    <a href="file/<?= $p['penetapan_uniq'] ?>" class="btn btn-sm btn-outline-warning">View</a>
                                     <?php if ($p['status'] == 1) : ?>
-                                        <a href="<?= 'file/' . $p['link_putusan'] . '/' . $p['id_uniq'] . '/delete' ?>" class="btn btn-sm btn-outline-danger tmblDelete">Delete</a>
+                                        <a href="<?= 'file/' . $p['penetapan_uniq'] . '/' . $p['id_uniq_user'] . '/delete' ?>" class="btn btn-sm btn-outline-danger tmblDelete">Delete</a>
                                     <?php endif ?>
                                 </td>l
                                 <td>
@@ -185,7 +179,7 @@ $session = session();
         data: {
             labels: [],
             datasets: [{
-                label: "Upload Putusan",
+                label: "Upload Penetapan",
                 tension: 0.4,
                 borderWidth: 0,
                 pointRadius: 0,
@@ -275,7 +269,7 @@ $session = session();
     console.log(`flashdata ${flasdata}`);
     if (flasdata) {
         Swal.fire(
-            'Data Putusan!',
+            'Data Penetapan!',
             `berhasil ${flasdata}`,
             'success'
         );
@@ -291,7 +285,7 @@ $session = session();
         //jalankan swal
         Swal.fire({
             title: 'Apakah Anda Yakin?',
-            text: "Data Putusan akan dihapus",
+            text: "Data Penetapan akan dihapus",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',

@@ -12,7 +12,7 @@
                 <?= csrf_field() ?>
                 <div class="col-md-6">
                     <label for="inputEmail4" class="form-label">Nomor Penetapan</label>
-                    <input type="text" class="form-control" id="inputNomorPutusan" name="nomorputusan" required autofocus>
+                    <input type="text" class="form-control" id="inputNomorPutusan" name="nomor_penetapan" required autofocus>
                 </div>
                 <div class="col-md-6">
                     <label for="formFileSm" class="form-label">Upload Penetapan</label>

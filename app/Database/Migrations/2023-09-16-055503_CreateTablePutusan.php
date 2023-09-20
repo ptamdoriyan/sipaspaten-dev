@@ -12,25 +12,25 @@ class CreateTablePutusan extends Migration
         //buat tabel
         $this->forge->addField(
             [
-                'id_putusan'          => [
+                'id_penetapan'          => [
                     'type'           => 'INT',
                     'constraint'     => 5,
                     'unsigned'       => true,
                     'auto_increment' => true
                 ],
-                'id_uniq'          => [
+                'id_uniq_user'          => [
                     'type'           => 'INT',
                     'constraint'     => 5
                 ],
-                'nomor_putusan'       => [
+                'nomor_penetapan'       => [
                     'type'           => 'VARCHAR',
                     'constraint'     => '100'
                 ],
-                'link_putusan'       => [
+                'penetapan_uniq'       => [
                     'type'           => 'INT',
                     'constraint'     => '255'
                 ],
-                'nama_file'       => [
+                'nama_file_penetapan'       => [
                     'type'           => 'VARCHAR',
                     'constraint'     => '255'
                 ],
@@ -45,13 +45,13 @@ class CreateTablePutusan extends Migration
             ]
         );
 
-        $this->forge->addKey('id_putusan', true);
-        $this->forge->createTable('putusan', true);
+        $this->forge->addKey('id_penetapan', true);
+        $this->forge->createTable('penetapan', true);
     }
 
     public function down()
     {
         // menghapus tabel putusan
-        $this->forge->dropTable('putusan');
+        $this->forge->dropTable('penetapan');
     }
 }

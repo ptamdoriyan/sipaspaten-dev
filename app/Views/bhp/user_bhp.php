@@ -1,5 +1,4 @@
 <?php
-// dd($allPutusan);
 $session = session();
 ?>
 
@@ -20,7 +19,7 @@ $session = session();
                         <div class="numbers">
                             <p class="text-sm mb-0 text-uppercase font-weight-bold">Penetapan</p>
                             <h5 class="font-weight-bolder">
-                                <?= count($putusan) ?> Berkas
+                                <?= count($penetapan) ?> Berkas
                             </h5>
                         </div>
                     </div>
@@ -41,7 +40,7 @@ $session = session();
                         <div class="numbers">
                             <p class="text-sm mb-0 text-uppercase font-weight-bold">Berita Acara</p>
                             <h5 class="font-weight-bolder">
-                                <?= count($putusan_aproved) ?> Berkas
+                                <?= count($penetapan_aproved) ?> Berkas
                             </h5>
                         </div>
                     </div>
@@ -100,7 +99,7 @@ $session = session();
         <div class="card ">
             <div class="card-header pb-0 p-3">
                 <div class="d-flex justify-content-between">
-                    <h6 class="mb-2">Daftar Putusan</h6>
+                    <h6 class="mb-2">Daftar Penetapan</h6>
                 </div>
             </div>
             <div class="table-responsive">
@@ -117,17 +116,17 @@ $session = session();
                     </thead>
                     <tbody>
                         <?php $i = 1; ?>
-                        <?php foreach ($putusan as $p) : ?>
+                        <?php foreach ($penetapan as $p) : ?>
                             <tr>
                                 <td><?= $i ?></td>
                                 <td><?= $p['nama'] ?></td>
-                                <td><?= $p['nomor_putusan'] ?></td>
+                                <td><?= $p['nomor_penetapan'] ?></td>
                                 <td><?= $p['tgl_upload'] ?></td>
                                 <td>
-                                    <a href="file/<?= $p['link_putusan'] ?>" class="btn btn-sm btn-outline-primary">View</a>
-                                    <a href="<?= 'bhp/add/' . $p['link_putusan'] ?>" class="btn btn-sm btn-outline-warning">Upload B.A</a>
+                                    <a href="file/<?= $p['penetapan_uniq'] ?>" class="btn btn-sm btn-outline-primary">View</a>
+                                    <a href="<?= 'bhp/add/' . $p['penetapan_uniq'] ?>" class="btn btn-sm btn-outline-warning">Upload B.A</a>
                                     <?php if ($p['status'] == 2) : ?>
-                                        <a href="<?= 'file/' . $p['link_putusan'] . '/' . $p['id_uniq'] . '/delete' ?>" class="btn btn-sm btn-outline-danger tmblDelete">Delete B.A</a>
+                                        <a href="<?= 'file/' . $p['penetapan_uniq'] . '/' . $p['id_uniq_user'] . '/delete' ?>" class="btn btn-sm btn-outline-danger tmblDelete">Delete B.A</a>
                                     <?php endif ?>
                                 </td>
                                 <td>

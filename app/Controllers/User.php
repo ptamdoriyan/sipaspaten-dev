@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
-use App\Models\PutusanModel;
+use App\Models\PenetapanModel;
 use App\Models\UsersModel;
 
 class User extends BaseController
@@ -19,29 +19,26 @@ class User extends BaseController
 
     public function index()
     {
-        // if (!isset($_SESSION['name'])) {
-        //     return redirect()->to('/');
-        // }
-        // inisiasi model
-        $model = new PutusanModel();
+
+        $penetapanModel = new PenetapanModel();
         //ambil data di database
-        $id_uniq = session('id_uniq');
-        $data['putusan'] = $model->orderBy('tgl_upload', 'DESC')->where('id_uniq', $id_uniq)->findAll();
-        $data['putusan_aproved'] = $model->orderBy('tgl_upload', 'DESC')->where(['id_uniq' => $id_uniq, 'status' => 2])->findAll();
+        $id_uniq_user = session('id_uniq_user');
+        $data['penetapan'] = $penetapanModel->orderBy('tgl_upload', 'DESC')->where('id_uniq_user', $id_uniq_user)->findAll();
+        $data['penetapan_approved'] = $penetapanModel->orderBy('tgl_upload', 'DESC')->where(['id_uniq_user' => $id_uniq_user, 'status' => 2])->findAll();
         //kirim view
         return view('user/user_pa', $data);
     }
 
     public function view()
     {
-        $model = new PutusanModel();
-        $id_uniq = session('id_uniq');
+        $model = new PenetapanModel();
+        $id_uniq_user = session('id_uniq_user');
 
         for ($i = 0; $i < 4; $i++) {
             // # code...
             $tanggaljudul = date('M', strtotime("+$i month"));
             $tanggalisi = date("m") + $i;
-            $hasilhitung[$tanggaljudul] = $model->SumDataPerPA($id_uniq, $tanggalisi);
+            $hasilhitung[$tanggaljudul] = $model->SumDataPerPA($id_uniq_user, $tanggalisi);
         }
         print_r(json_encode($hasilhitung));
         die;
@@ -51,14 +48,14 @@ class User extends BaseController
     //add data
     public function addData()
     {
-        $model = new PutusanModel();
+        $model = new PenetapanModel();
 
         if (!$this->request->is('post')) {
             return view('user/user_add');
         }
 
         $rules = [
-            'nomorputusan' => 'required'
+            'nomor_penetapan' => 'required'
         ];
 
         if (!$this->validate($rules)) {
@@ -66,56 +63,49 @@ class User extends BaseController
         }
         //if success
         //ambe data
-        $id_uniq = session('id_uniq');
-        $nomorputusan = $this->request->getVar('nomorputusan');
+        $id_uniq_user = session('id_uniq_user');
+        $nomor_penetapan = $this->request->getVar('nomor_penetapan');
         $status = 1;
         $databerkas = $this->request->getFile('berkas');
-        $link_putusan = rand();
-        $filename = $databerkas->getRandomName();
+        $penetapan_uniq = rand();
+        $nama_file_penetapan = $databerkas->getRandomName();
 
         $data = [
-            'id_uniq' => $id_uniq,
-            'nomor_putusan' => $nomorputusan,
-            'link_putusan' => $link_putusan,
-            'nama_file' => $filename,
-            'nama_file_ba' => null,
-            'nomor_ba' => null,
+            'id_uniq_user' => $id_uniq_user,
+            'nomor_penetapan' => $nomor_penetapan,
+            'penetapan_uniq' => $penetapan_uniq,
+            'nama_file_penetapan' => $nama_file_penetapan,
             'status' => $status
         ];
-        // dd($data);
 
         //masukkan data di database
         $model->insert($data);
         //pindahkan berkas
-        $databerkas->move('uploads/putusan/', $filename);
-        $this->logmodel->insert(['id_uniq' => $data['id_uniq'], 'action' => 'Upload Data']);
+        $databerkas->move('uploads/penetapan/', $nama_file_penetapan);
+        $this->logmodel->insert(['id_uniq_user' => $id_uniq_user, 'action' => 'Upload Data']);
         //buat flash data
         $this->session->setFlashdata('message', 'Diupload');
-        sendMessage('6282346909192', session('name'), 'Mengupload Putusan');
+        sendMessage('6282346909192', session('name'), 'Mengupload Penetapan');
         return redirect()->to('user');
     }
 
     //hapus data
-    public function delete($link_putusan, $id_uniq)
+    public function delete($penetapan_uniq, $id_uniq_user)
     {
-        $model = new PutusanModel();
-        $model->where('link_putusan', $link_putusan)->delete();
-        $this->logmodel->insert(['id_uniq' => $id_uniq, 'action' => 'Delete Data']);
+        $model = new PenetapanModel();
+        $model->where('penetapan_uniq', $penetapan_uniq)->delete();
+        $this->logmodel->insert(['id_uniq_user' => $id_uniq_user, 'action' => 'Delete Data']);
         $this->session->setFlashdata('message', 'Dihapus');
-        sendMessage('6282346909192', session('name'), 'Menghapus Putusan');
+        sendMessage('6282346909192', session('name'), 'Menghapus Penetapan');
         return redirect()->to('user');
     }
 
 
     // download dokumen
-    function download($id)
+    function download($penetapan_uniq)
     {
-        $berkas = new PutusanModel();
-        $data = $berkas->where('link_putusan', $id)->first();
-        // dd($data);
-        // var_dump($data);
-        // echo $data['link_dock'];
-        // die;
-        return $this->response->download('uploads/putusan/' . $data['nama_file'], null)->setFileName('putusan_upload' . $data['tgl_upload'] . '.pdf');
+        $berkas = new PenetapanModel();
+        $data = $berkas->where('penetapan_uniq', $penetapan_uniq)->first();
+        return $this->response->download('uploads/penetapan/' . $data['nama_file_penetapan'], null)->setFileName('Penetapan_' . $data['tgl_upload'] . '.pdf');
     }
 }

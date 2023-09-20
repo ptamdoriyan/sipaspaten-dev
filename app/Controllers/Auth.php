@@ -72,23 +72,23 @@ class Auth extends BaseController
                             'name' => $user['nama'],
                             'telp' => $user['whatsapp'],
                             'role_id' => $user['role_id'],
-                            'id_uniq' => $user['id_uniq']
+                            'id_uniq_user' => $user['id_uniq']
                         ];
                         //simpan session data
                         $session->set($data);
                         if ($user['role_id'] == 1) {
-                            $this->logmodel->insert(['id_uniq' => $data['id_uniq'], 'action' => 'Login']);
+                            $this->logmodel->insert(['id_uniq_user' => $data['id_uniq_user'], 'action' => 'Login']);
                             return redirect()->to('admin');
                         }
                         if ($user['role_id'] == 2) {
-                            $this->logmodel->insert(['id_uniq' => $data['id_uniq'], 'action' => 'Login']);
+                            $this->logmodel->insert(['id_uniq_user' => $data['id_uniq_user'], 'action' => 'Login']);
                             return redirect()->to('pta');
                         }
                         if ($user['role_id'] == 3) {
-                            $this->logmodel->insert(['id_uniq' => $data['id_uniq'], 'action' => 'Login']);
+                            $this->logmodel->insert(['id_uniq_user' => $data['id_uniq_user'], 'action' => 'Login']);
                             return redirect()->to('bhp');
                         } else {
-                            $this->logmodel->insert(['id_uniq' => $data['id_uniq'], 'action' => 'Login']);
+                            $this->logmodel->insert(['id_uniq_user' => $data['id_uniq_user'], 'action' => 'Login']);
                             return redirect()->to('user');
                         }
                     } else {

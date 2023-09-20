@@ -4,22 +4,20 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class PutusanModel extends Model
+class PenetapanModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'putusan';
-    protected $primaryKey       = 'id_putusan';
+    protected $table            = 'penetapan';
+    protected $primaryKey       = 'id_penetapan';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'id_uniq',
-        'nomor_putusan',
-        'link_putusan',
-        'nama_file',
-        'nama_file_ba',
-        'nomor_ba',
+        'id_uniq_user',
+        'nomor_penetapan',
+        'penetapan_uniq',
+        'nama_file_penetapan',
         'status'
 
     ];
@@ -49,23 +47,23 @@ class PutusanModel extends Model
     protected $afterDelete    = [];
 
 
-    public function SumDataPerPA($id_uniq, $bulan)
+    public function SumDataPerPA($id_uniq_user, $bulan)
     {
         $db = db_connect();
-        $query = "SELECT * FROM `putusan` WHERE id_uniq = $id_uniq AND month(tgl_upload) = $bulan";
+        $query = "SELECT * FROM `penetapan` WHERE id_uniq_user = $id_uniq_user AND month(tgl_upload) = $bulan";
         return $db->query($query)->getNumRows();
     }
 
     public function bhpGetDataAll()
     {
         $db = db_connect();
-        $query = "SELECT putusan.*, users.nama FROM putusan JOIN users on putusan.id_uniq=users.id_uniq;";
+        $query = "SELECT penetapan.*, users.nama FROM penetapan JOIN users on penetapan.id_uniq_user=users.id_uniq;";
         return $db->query($query)->getResultArray();
     }
-    public function bhpGetDatabyLink($link_putusan)
+    public function bhpGetDatabyLink($penetapan_uniq)
     {
         $db = db_connect();
-        $query = "SELECT putusan.*, users.nama, users.whatsapp FROM putusan JOIN users on putusan.id_uniq=users.id_uniq WHERE link_putusan = $link_putusan";
+        $query = "SELECT penetapan.*, users.nama, users.whatsapp FROM penetapan JOIN users on penetapan.id_uniq_user=users.id_uniq WHERE penetapan_uniq = $penetapan_uniq";
         return $db->query($query)->getRowArray();
     }
 }

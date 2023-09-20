@@ -18,7 +18,7 @@ class CreateAuditTrail extends Migration
                     'unsigned'       => true,
                     'auto_increment' => true
                 ],
-                'id_uniq'          => [
+                'id_uniq_user'          => [
                     'type'           => 'INT',
                     'constraint'     => 5
                 ],
