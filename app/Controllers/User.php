@@ -78,6 +78,8 @@ class User extends BaseController
             'nomor_putusan' => $nomorputusan,
             'link_putusan' => $link_putusan,
             'nama_file' => $filename,
+            'nama_file_ba' => null,
+            'nomor_ba' => null,
             'status' => $status
         ];
         // dd($data);
@@ -89,7 +91,7 @@ class User extends BaseController
         $this->logmodel->insert(['id_uniq' => $data['id_uniq'], 'action' => 'Upload Data']);
         //buat flash data
         $this->session->setFlashdata('message', 'Diupload');
-        sendMessage('6282346909192', session('name'), 'Mengupload');
+        sendMessage('6282346909192', session('name'), 'Mengupload Putusan');
         return redirect()->to('user');
     }
 
@@ -100,7 +102,7 @@ class User extends BaseController
         $model->where('link_putusan', $link_putusan)->delete();
         $this->logmodel->insert(['id_uniq' => $id_uniq, 'action' => 'Delete Data']);
         $this->session->setFlashdata('message', 'Dihapus');
-        sendMessage('6282346909192', session('name'), 'Menghapus');
+        sendMessage('6282346909192', session('name'), 'Menghapus Putusan');
         return redirect()->to('user');
     }
 

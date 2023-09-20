@@ -84,7 +84,7 @@ $session = session();
             $('.btnubahData').hide();
             $('#inputWhatsApp').attr('disabled', 'true');
             $('#inputEmail').attr('disabled', 'true');
-            $('form').attr('action', 'profile/editpassword');
+            $('form').attr('action', '/profile/editpassword');
 
         } else {
             $('.password').hide();
@@ -92,7 +92,7 @@ $session = session();
             $('.btnubahData').show();
             $('#inputWhatsApp').removeAttr('disabled');
             $('#inputEmail').removeAttr('disabled');
-            $('form').attr('action', 'profile/editprofile');
+            $('form').attr('action', '/profile/editprofile');
 
             $('.old_password').removeAttr('required');
             $('.new_password').removeAttr('required');

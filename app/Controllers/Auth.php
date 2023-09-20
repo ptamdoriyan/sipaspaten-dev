@@ -22,7 +22,7 @@ class Auth extends BaseController
                 break;
             case '3':
                 # code...
-                return redirect()->to('bph');
+                return redirect()->to('bhp');
                 break;
             case '4':
                 # code...

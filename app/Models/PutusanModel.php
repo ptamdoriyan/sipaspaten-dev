@@ -18,6 +18,8 @@ class PutusanModel extends Model
         'nomor_putusan',
         'link_putusan',
         'nama_file',
+        'nama_file_ba',
+        'nomor_ba',
         'status'
 
     ];
@@ -52,5 +54,18 @@ class PutusanModel extends Model
         $db = db_connect();
         $query = "SELECT * FROM `putusan` WHERE id_uniq = $id_uniq AND month(tgl_upload) = $bulan";
         return $db->query($query)->getNumRows();
+    }
+
+    public function bhpGetDataAll()
+    {
+        $db = db_connect();
+        $query = "SELECT putusan.*, users.nama FROM putusan JOIN users on putusan.id_uniq=users.id_uniq;";
+        return $db->query($query)->getResultArray();
+    }
+    public function bhpGetDatabyLink($link_putusan)
+    {
+        $db = db_connect();
+        $query = "SELECT putusan.*, users.nama, users.whatsapp FROM putusan JOIN users on putusan.id_uniq=users.id_uniq WHERE link_putusan = $link_putusan";
+        return $db->query($query)->getRowArray();
     }
 }

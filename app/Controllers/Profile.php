@@ -36,7 +36,7 @@ class Profile extends BaseController
         $usermodel->update($id_user, $data);
         $this->logmodel->insert(['id_uniq' => session('id_uniq'), 'action' => 'Update Profile']);
         $this->session->setFlashdata('message', 'Diubah');
-        return redirect()->to('profile');
+        return redirect()->to('/profile');
     }
 
     public function editPassword()
@@ -59,9 +59,9 @@ class Profile extends BaseController
             //cek password sudah sama atau tidak
             if (!password_verify($old_password, $data['user']['password'])) {
                 # code...
-                dd($old_password);
+                // dd($old_password);
                 $this->session->setFlashdata('message', 'Password Sebelumnya');
-                return redirect()->to('profile');
+                return redirect()->to('/profile');
             } else {
                 $data = [
                     'password' => password_hash($this->request->getVar('new_password'), PASSWORD_DEFAULT)
@@ -70,7 +70,7 @@ class Profile extends BaseController
                 $usermodel->update($id_user, $data);
                 $this->logmodel->insert(['id_uniq' => session('id_uniq'), 'action' => 'Update Password']);
                 $this->session->setFlashdata('message', 'Diubah');
-                return redirect()->to('profile');
+                return redirect()->to('/profile');
             }
         }
     }
