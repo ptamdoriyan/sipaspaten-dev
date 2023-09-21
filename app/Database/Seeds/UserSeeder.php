@@ -12,7 +12,7 @@ class UserSeeder extends Seeder
         $users = [
             [
                 'id_user' => rand(1, 99999999999),
-                'nama' => 'pengadilan Agama Bitung',
+                'name' => 'pengadilan Agama Bitung',
                 'whatsapp' => '082346909192',
                 'email' => 'pabitung@gmail.com',
                 'password' => password_hash('1234', PASSWORD_DEFAULT),
@@ -21,7 +21,7 @@ class UserSeeder extends Seeder
             ],
             [
                 'id_user' => rand(1, 99999999999),
-                'nama' => 'pengadilan Agama Boroko',
+                'name' => 'pengadilan Agama Boroko',
                 'whatsapp' => '082259666646',
                 'email' => 'paboroko@gmail.com',
                 'password' => password_hash('1234', PASSWORD_DEFAULT),
@@ -30,7 +30,7 @@ class UserSeeder extends Seeder
             ],
             [
                 'id_user' => rand(1, 99999999999),
-                'nama' => 'Pengadilan Tinggi Agama Manado',
+                'name' => 'Pengadilan Tinggi Agama Manado',
                 'whatsapp' => '082259666646',
                 'email' => 'ptamanado@gmail.com',
                 'password' => password_hash("1234", PASSWORD_DEFAULT),
@@ -39,7 +39,7 @@ class UserSeeder extends Seeder
             ],
             [
                 'id_user' => rand(1, 99999999999),
-                'nama' => 'admin',
+                'name' => 'admin',
                 'whatsapp' => '082259666646',
                 'email' => 'admin@gmail.com',
                 'password' => password_hash("1234", PASSWORD_DEFAULT),
@@ -48,7 +48,7 @@ class UserSeeder extends Seeder
             ],
             [
                 'id_user' => rand(1, 99999999999),
-                'nama' => 'BHP Makassar',
+                'name' => 'BHP Makassar',
                 'whatsapp' => '082259666646',
                 'email' => 'bhpmakassar@gmail.com',
                 'password' => password_hash("1234", PASSWORD_DEFAULT),

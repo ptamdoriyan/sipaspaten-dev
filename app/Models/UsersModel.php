@@ -15,7 +15,7 @@ class UsersModel extends Model
     protected $protectFields    = true;
     protected $allowedFields    = [
         'id_user',
-        'nama',
+        'name',
         'whatsapp',
         'email',
         'password',

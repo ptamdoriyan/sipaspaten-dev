@@ -17,7 +17,7 @@ class TableUserStart extends Migration
                     'type'           => 'BIGINT',
                     'unsigned'       => true,
                 ],
-                'nama'       => [
+                'name'       => [
                     'type'           => 'VARCHAR',
                     'constraint'     => '128'
                 ],

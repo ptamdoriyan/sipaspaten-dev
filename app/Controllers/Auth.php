@@ -68,11 +68,11 @@ class Auth extends BaseController
                     // cek password
                     if (password_verify($password, $user['password'])) {
                         $data = [
-                            'email' => $user['email'],
+                            'id_user' => $user['id_user'],
                             'name' => $user['nama'],
-                            'telp' => $user['whatsapp'],
+                            'email' => $user['email'],
+                            'whatsapp' => $user['whatsapp'],
                             'role_id' => $user['role_id'],
-                            'id_uniq_user' => $user['id_uniq']
                         ];
                         //simpan session data
                         $session->set($data);
