@@ -22,11 +22,23 @@ class Auth extends BaseController
                 break;
             case '3':
                 # code...
-                return redirect()->to('bhp');
+                return redirect()->to('pta');
                 break;
             case '4':
                 # code...
+                return redirect()->to('pta');
+                break;
+            case '5':
+                # code...
+                return redirect()->to('bhp');
+                break;
+            case '6':
+                # code...
                 return redirect()->to('user');
+                break;
+            case '7':
+                # code...
+                return redirect()->to('pta');
                 break;
 
             default:
@@ -69,7 +81,7 @@ class Auth extends BaseController
                     if (password_verify($password, $user['password'])) {
                         $data = [
                             'id_user' => $user['id_user'],
-                            'name' => $user['nama'],
+                            'name' => $user['name'],
                             'email' => $user['email'],
                             'whatsapp' => $user['whatsapp'],
                             'role_id' => $user['role_id'],
@@ -78,18 +90,18 @@ class Auth extends BaseController
 
                         $session->set($data);
                         if ($user['role_id'] == 1) {
-                            $this->logmodel->insert(['id_uniq_user' => $data['id_uniq_user'], 'action' => 'Login']);
+                            $this->logmodel->insert(['id_user' => $data['id_user'], 'action' => 'Login']);
                             return redirect()->to('admin');
                         }
                         if ($user['role_id'] == 5) {
-                            $this->logmodel->insert(['id_uniq_user' => $data['id_uniq_user'], 'action' => 'Login']);
+                            $this->logmodel->insert(['id_user' => $data['id_user'], 'action' => 'Login']);
                             return redirect()->to('bhp');
                         }
                         if ($user['role_id'] == 6) {
-                            $this->logmodel->insert(['id_uniq_user' => $data['id_uniq_user'], 'action' => 'Login']);
+                            $this->logmodel->insert(['id_user' => $data['id_user'], 'action' => 'Login']);
                             return redirect()->to('user');
                         } else {
-                            $this->logmodel->insert(['id_uniq_user' => $data['id_uniq_user'], 'action' => 'Login']);
+                            $this->logmodel->insert(['id_user' => $data['id_user'], 'action' => 'Login']);
                             return redirect()->to('pta');
                         }
                     } else {

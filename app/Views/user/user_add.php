@@ -16,7 +16,7 @@
                 </div>
                 <div class="col-md-6">
                     <label for="formFileSm" class="form-label">Upload Penetapan</label>
-                    <input class="form-control form-control-sm" id="formFileSm" type="file" name="berkas">
+                    <input class="form-control form-control-sm" id="formFileSm" type="file" name="berkas" required>
                 </div>
 
                 <div class="col-12">

@@ -14,9 +14,9 @@ class PenetapanModel extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
+        'id_penetapan',
         'id_user',
         'nomor_penetapan',
-        'penetapan_uniq',
         'nama_file_penetapan',
         'status'
 
@@ -47,23 +47,23 @@ class PenetapanModel extends Model
     protected $afterDelete    = [];
 
 
-    public function SumDataPerPA($id_uniq_user, $bulan)
+    public function SumDataPerPA($id_user, $bulan)
     {
         $db = db_connect();
-        $query = "SELECT * FROM `penetapan` WHERE id_uniq_user = $id_uniq_user AND month(tgl_upload) = $bulan";
+        $query = "SELECT * FROM `penetapan` WHERE id_user = $id_user AND month(tgl_upload) = $bulan";
         return $db->query($query)->getNumRows();
     }
 
     public function bhpGetDataAll()
     {
         $db = db_connect();
-        $query = "SELECT penetapan.*, users.nama FROM penetapan JOIN users on penetapan.id_uniq_user=users.id_uniq;";
+        $query = "SELECT penetapan.*, users.name FROM penetapan JOIN users on penetapan.id_user=users.id_user;";
         return $db->query($query)->getResultArray();
     }
-    public function bhpGetDatabyLink($penetapan_uniq)
+    public function bhpGetDatabyLink($id_penetapan)
     {
         $db = db_connect();
-        $query = "SELECT penetapan.*, users.nama, users.whatsapp FROM penetapan JOIN users on penetapan.id_uniq_user=users.id_uniq WHERE penetapan_uniq = $penetapan_uniq";
+        $query = "SELECT penetapan.*, users.name, users.whatsapp FROM penetapan JOIN users on penetapan.id_user=users.id_user WHERE id_penetapan = $id_penetapan";
         return $db->query($query)->getRowArray();
     }
 }

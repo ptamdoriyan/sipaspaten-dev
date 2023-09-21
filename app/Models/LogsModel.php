@@ -13,7 +13,7 @@ class LogsModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['id_uniq_user', 'action'];
+    protected $allowedFields    = ['id_user', 'action'];
 
     // Dates
     protected $useTimestamps = false;

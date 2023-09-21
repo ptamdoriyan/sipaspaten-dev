@@ -46,4 +46,12 @@ class UsersModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function getWhatsapp($role_id)
+    {
+        $db = db_connect();
+        $query = "SELECT users.whatsapp FROM users WHERE role_id = $role_id;";
+        $hasil = $db->query($query)->getRowArray();
+        return $hasil['whatsapp'];
+    }
 }

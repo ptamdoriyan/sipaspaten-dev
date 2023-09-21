@@ -14,7 +14,7 @@ class User extends BaseController
     {
 
         helper(['whatsapp_helper', 'login_helper']);
-        checkLogin(4, session('role_id'));
+        checkLogin(6, session('role_id'));
     }
 
     public function index()
@@ -22,23 +22,24 @@ class User extends BaseController
 
         $penetapanModel = new PenetapanModel();
         //ambil data di database
-        $id_uniq_user = session('id_uniq_user');
-        $data['penetapan'] = $penetapanModel->orderBy('tgl_upload', 'DESC')->where('id_uniq_user', $id_uniq_user)->findAll();
-        $data['penetapan_approved'] = $penetapanModel->orderBy('tgl_upload', 'DESC')->where(['id_uniq_user' => $id_uniq_user, 'status' => 2])->findAll();
+        $id_user = session('id_user');
+        $data['penetapan'] = $penetapanModel->orderBy('tgl_upload', 'DESC')->where('id_user', $id_user)->findAll();
+
+        $data['penetapan_approved'] = $penetapanModel->orderBy('tgl_upload', 'DESC')->where(['id_user' => $id_user, 'status' => 2])->findAll();
         //kirim view
         return view('user/user_pa', $data);
     }
 
     public function view()
     {
-        $model = new PenetapanModel();
-        $id_uniq_user = session('id_uniq_user');
+        $penetapanModel = new PenetapanModel();
+        $id_user = session('id_user');
 
         for ($i = 0; $i < 4; $i++) {
             // # code...
             $tanggaljudul = date('M', strtotime("+$i month"));
             $tanggalisi = date("m") + $i;
-            $hasilhitung[$tanggaljudul] = $model->SumDataPerPA($id_uniq_user, $tanggalisi);
+            $hasilhitung[$tanggaljudul] = $penetapanModel->SumDataPerPA($id_user, $tanggalisi);
         }
         print_r(json_encode($hasilhitung));
         die;
@@ -48,7 +49,8 @@ class User extends BaseController
     //add data
     public function addData()
     {
-        $model = new PenetapanModel();
+        $penetapanModel = new PenetapanModel();
+        $userModel = new UsersModel();
 
         if (!$this->request->is('post')) {
             return view('user/user_add');
@@ -63,49 +65,60 @@ class User extends BaseController
         }
         //if success
         //ambe data
-        $id_uniq_user = session('id_uniq_user');
+        $id_user = session('id_user');
         $nomor_penetapan = $this->request->getVar('nomor_penetapan');
         $status = 1;
         $databerkas = $this->request->getFile('berkas');
-        $penetapan_uniq = rand();
+        $id_penetapan = rand(1, 99999999999);
         $nama_file_penetapan = $databerkas->getRandomName();
 
         $data = [
-            'id_uniq_user' => $id_uniq_user,
+
+            'id_penetapan' => $id_penetapan,
+            'id_user' => $id_user,
             'nomor_penetapan' => $nomor_penetapan,
-            'penetapan_uniq' => $penetapan_uniq,
             'nama_file_penetapan' => $nama_file_penetapan,
             'status' => $status
         ];
 
         //masukkan data di database
-        $model->insert($data);
+        $penetapanModel->insert($data);
         //pindahkan berkas
         $databerkas->move('uploads/penetapan/', $nama_file_penetapan);
-        $this->logmodel->insert(['id_uniq_user' => $id_uniq_user, 'action' => 'Upload Data']);
+        $this->logmodel->insert(['id_user' => $id_user, 'action' => 'Upload Data']);
         //buat flash data
         $this->session->setFlashdata('message', 'Diupload');
-        sendMessage('6282346909192', session('name'), 'Mengupload Penetapan');
+        //persiapan kirim pesan
+        $waPanitera = $userModel->getWhatsapp(3);
+        $waPanmud = $userModel->getWhatsapp(4);
+        $waBhp = $userModel->getWhatsapp(5);
+        sendMessage("$waPanitera,$waPanmud,$waBhp", session('name'), 'Mengupload Penetapan');
         return redirect()->to('user');
     }
 
     //hapus data
-    public function delete($penetapan_uniq, $id_uniq_user)
+    public function delete($id_penetapan, $id_user)
     {
-        $model = new PenetapanModel();
-        $model->where('penetapan_uniq', $penetapan_uniq)->delete();
-        $this->logmodel->insert(['id_uniq_user' => $id_uniq_user, 'action' => 'Delete Data']);
+        $penetapanModel = new PenetapanModel();
+        $userModel = new UsersModel();
+        $penetapanModel->where('id_penetapan', $id_penetapan)->delete();
+        $this->logmodel->insert(['id_user' => $id_user, 'action' => 'Delete Data']);
+        // session
         $this->session->setFlashdata('message', 'Dihapus');
-        sendMessage('6282346909192', session('name'), 'Menghapus Penetapan');
+        // kirim WA
+        $waPanitera = $userModel->getWhatsapp(3);
+        $waPanmud = $userModel->getWhatsapp(4);
+        $waBhp = $userModel->getWhatsapp(5);
+        sendMessage("$waPanitera,$waPanmud,$waBhp", session('name'), 'Menghapus Penetapan');
         return redirect()->to('user');
     }
 
 
     // download dokumen
-    function download($penetapan_uniq)
+    function download($id_penetapan)
     {
-        $berkas = new PenetapanModel();
-        $data = $berkas->where('penetapan_uniq', $penetapan_uniq)->first();
+        $penetapanModel = new PenetapanModel();
+        $data = $penetapanModel->where('id_penetapan', $id_penetapan)->first();
         return $this->response->download('uploads/penetapan/' . $data['nama_file_penetapan'], null)->setFileName('Penetapan_' . $data['tgl_upload'] . '.pdf');
     }
 }

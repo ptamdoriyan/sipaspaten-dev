@@ -25,7 +25,7 @@ $session = session();
                         <input type="hidden" name="id_user" value="<?= $user[0]['id_user'] ?>">
                         <div class="col-md-6">
                             <label for="inputNama" class="form-label">Nama</label>
-                            <input type="text" class="form-control" id="inputNama" name="nama" disabled value="<?= $user[0]['nama'] ?>">
+                            <input type="text" class="form-control" id="inputNama" name="nama" disabled value="<?= $user[0]['name'] ?>">
                         </div>
                         <div class="col-md-6"></div>
                         <div class="col-md-6">

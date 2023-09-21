@@ -17,8 +17,7 @@ class CreateTablePutusan extends Migration
                     'unsigned'       => true,
                 ],
                 'id_user'          => [
-                    'type'           => 'INT',
-                    'constraint'     => 255
+                    'type'           => 'BIGINT',
                 ],
                 'nomor_penetapan'       => [
                     'type'           => 'VARCHAR',

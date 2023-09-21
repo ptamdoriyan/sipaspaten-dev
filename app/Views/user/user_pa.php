@@ -140,9 +140,9 @@ $session = session();
                                 <td><?= $p['nomor_penetapan'] ?></td>
                                 <td><?= $p['tgl_upload'] ?></td>
                                 <td>
-                                    <a href="file/<?= $p['penetapan_uniq'] ?>" class="btn btn-sm btn-outline-warning">View</a>
+                                    <a href="file/<?= $p['id_penetapan'] ?>" class="btn btn-sm btn-outline-warning">View</a>
                                     <?php if ($p['status'] == 1) : ?>
-                                        <a href="<?= 'file/' . $p['penetapan_uniq'] . '/' . $p['id_uniq_user'] . '/delete' ?>" class="btn btn-sm btn-outline-danger tmblDelete">Delete</a>
+                                        <a href="<?= 'file/' . $p['id_penetapan'] . '/' . $p['id_user'] . '/delete' ?>" class="btn btn-sm btn-outline-danger tmblDelete">Delete</a>
                                     <?php endif ?>
                                 </td>l
                                 <td>

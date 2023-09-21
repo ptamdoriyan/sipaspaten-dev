@@ -10,7 +10,7 @@ class Profile extends BaseController
 
     public function __construct()
     {
-        if (session('id_uniq_user') == null) {
+        if (session('id_user') == null) {
             header('Location: ' . base_url('/'));
             exit();
         }
@@ -19,22 +19,22 @@ class Profile extends BaseController
     public function index()
     {
         //
-        $user = new UsersModel();
-        $data['user'] = $user->where('id_uniq', session('id_uniq_user'))->findAll();
+        $userModel = new UsersModel();
+        $data['user'] = $userModel->where('id_user', session('id_user'))->findAll();
         return view('profile/user_profile', $data);
     }
     public function editProfile()
     {
 
-        $usermodel = new UsersModel();
+        $userModel = new UsersModel();
         $id_user = $this->request->getVar('id_user');
         $data = [
             'email' => $this->request->getVar('email'),
             'whatsapp' => $this->request->getVar('whatsapp'),
         ];
 
-        $usermodel->update($id_user, $data);
-        $this->logmodel->insert(['id_uniq_user' => session('id_uniq_user'), 'action' => 'Update Profile']);
+        $userModel->update($id_user, $data);
+        $this->logmodel->insert(['id_user' => session('id_user'), 'action' => 'Update Profile']);
         $this->session->setFlashdata('message', 'Diubah');
         return redirect()->to('/profile');
     }
@@ -42,7 +42,7 @@ class Profile extends BaseController
     public function editPassword()
     {
         $usermodel = new UsersModel();
-        $data['user'] = $usermodel->where('id_uniq', session('id_uniq_user'))->first();
+        $data['user'] = $usermodel->where('id_user', session('id_user'))->first();
 
 
         $id_user = $this->request->getVar('id_user');
@@ -64,11 +64,11 @@ class Profile extends BaseController
                 return redirect()->to('/profile');
             } else {
                 $data = [
-                    'password' => password_hash($this->request->getVar('new_password'), PASSWORD_DEFAULT)
+                    'password' => password_hash($new_password, PASSWORD_DEFAULT)
                 ];
 
                 $usermodel->update($id_user, $data);
-                $this->logmodel->insert(['id_uniq_user' => session('id_uniq_user'), 'action' => 'Update Password']);
+                $this->logmodel->insert(['id_user' => session('id_user'), 'action' => 'Update Password']);
                 $this->session->setFlashdata('message', 'Diubah');
                 return redirect()->to('/profile');
             }
