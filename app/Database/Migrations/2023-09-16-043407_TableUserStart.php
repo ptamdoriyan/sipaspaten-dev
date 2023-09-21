@@ -14,14 +14,8 @@ class TableUserStart extends Migration
         $this->forge->addField(
             [
                 'id_user'          => [
-                    'type'           => 'INT',
-                    'constraint'     => 5,
+                    'type'           => 'BIGINT',
                     'unsigned'       => true,
-                    'auto_increment' => true
-                ],
-                'id_uniq'       => [
-                    'type'           => 'VARCHAR',
-                    'constraint'     => '255'
                 ],
                 'nama'       => [
                     'type'           => 'VARCHAR',

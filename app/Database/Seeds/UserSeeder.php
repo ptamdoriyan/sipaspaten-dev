@@ -11,7 +11,7 @@ class UserSeeder extends Seeder
         //membuat data seed
         $users = [
             [
-                'id_uniq' => rand(10000, 99999),
+                'id_user' => rand(1, 99999999999),
                 'nama' => 'pengadilan Agama Bitung',
                 'whatsapp' => '082346909192',
                 'email' => 'pabitung@gmail.com',
@@ -20,7 +20,16 @@ class UserSeeder extends Seeder
                 'is_active' => 1
             ],
             [
-                'id_uniq' => rand(10000, 99999),
+                'id_user' => rand(1, 99999999999),
+                'nama' => 'pengadilan Agama Boroko',
+                'whatsapp' => '082259666646',
+                'email' => 'paboroko@gmail.com',
+                'password' => password_hash('1234', PASSWORD_DEFAULT),
+                'role_id' => 4,
+                'is_active' => 1
+            ],
+            [
+                'id_user' => rand(1, 99999999999),
                 'nama' => 'Pengadilan Tinggi Agama Manado',
                 'whatsapp' => '082259666646',
                 'email' => 'ptamanado@gmail.com',
@@ -29,7 +38,7 @@ class UserSeeder extends Seeder
                 'is_active' => 1
             ],
             [
-                'id_uniq' => rand(10000, 99999),
+                'id_user' => rand(1, 99999999999),
                 'nama' => 'admin',
                 'whatsapp' => '082259666646',
                 'email' => 'admin@gmail.com',
@@ -38,7 +47,7 @@ class UserSeeder extends Seeder
                 'is_active' => 1
             ],
             [
-                'id_uniq' => rand(10000, 99999),
+                'id_user' => rand(1, 99999999999),
                 'nama' => 'BHP Makassar',
                 'whatsapp' => '082259666646',
                 'email' => 'bhpmakassar@gmail.com',

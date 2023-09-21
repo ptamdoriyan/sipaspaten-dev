@@ -13,22 +13,16 @@ class CreateTablePutusan extends Migration
         $this->forge->addField(
             [
                 'id_penetapan'          => [
-                    'type'           => 'INT',
-                    'constraint'     => 5,
+                    'type'           => 'BIGINT',
                     'unsigned'       => true,
-                    'auto_increment' => true
                 ],
-                'id_uniq_user'          => [
+                'id_user'          => [
                     'type'           => 'INT',
-                    'constraint'     => 5
+                    'constraint'     => 255
                 ],
                 'nomor_penetapan'       => [
                     'type'           => 'VARCHAR',
                     'constraint'     => '100'
-                ],
-                'penetapan_uniq'       => [
-                    'type'           => 'INT',
-                    'constraint'     => '255'
                 ],
                 'nama_file_penetapan'       => [
                     'type'           => 'VARCHAR',

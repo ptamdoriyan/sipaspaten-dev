@@ -14,11 +14,10 @@ class CreateAuditTrail extends Migration
             [
                 'id_log'          => [
                     'type'           => 'INT',
-                    'constraint'     => 5,
                     'unsigned'       => true,
                     'auto_increment' => true
                 ],
-                'id_uniq_user'          => [
+                'id_user'          => [
                     'type'           => 'INT',
                     'constraint'     => 5
                 ],

@@ -9,12 +9,12 @@ class PenetapanModel extends Model
     protected $DBGroup          = 'default';
     protected $table            = 'penetapan';
     protected $primaryKey       = 'id_penetapan';
-    protected $useAutoIncrement = true;
+    protected $useAutoIncrement = false;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'id_uniq_user',
+        'id_user',
         'nomor_penetapan',
         'penetapan_uniq',
         'nama_file_penetapan',

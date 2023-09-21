@@ -9,12 +9,12 @@ class UsersModel extends Model
     protected $DBGroup          = 'default';
     protected $table            = 'users';
     protected $primaryKey       = 'id_user';
-    protected $useAutoIncrement = true;
+    protected $useAutoIncrement = false;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'id_uniq',
+        'id_user',
         'nama',
         'whatsapp',
         'email',
