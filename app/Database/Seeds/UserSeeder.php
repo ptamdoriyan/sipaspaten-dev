@@ -9,23 +9,34 @@ class UserSeeder extends Seeder
     public function run()
     {
         //membuat data seed
+        #--------------
+        // Admin 1
+        // Hakim - 2
+        // Panitera - 3
+        // Panmud - 4
+        // BHP - 5
+        // Admin PA - 6 
+        // User PTA - 7
+
+        #---------------------
+
         $users = [
             [
                 'id_user' => rand(1, 99999999999),
-                'name' => 'pengadilan Agama Bitung',
+                'name' => 'Pengadilan Agama Bitung',
                 'whatsapp' => '082346909192',
                 'email' => 'pabitung@gmail.com',
                 'password' => password_hash('1234', PASSWORD_DEFAULT),
-                'role_id' => 4,
+                'role_id' => 6,
                 'is_active' => 1
             ],
             [
                 'id_user' => rand(1, 99999999999),
-                'name' => 'pengadilan Agama Boroko',
+                'name' => 'Pengadilan Agama Boroko',
                 'whatsapp' => '082259666646',
                 'email' => 'paboroko@gmail.com',
                 'password' => password_hash('1234', PASSWORD_DEFAULT),
-                'role_id' => 4,
+                'role_id' => 6,
                 'is_active' => 1
             ],
             [
@@ -34,12 +45,12 @@ class UserSeeder extends Seeder
                 'whatsapp' => '082259666646',
                 'email' => 'ptamanado@gmail.com',
                 'password' => password_hash("1234", PASSWORD_DEFAULT),
-                'role_id' => 2,
+                'role_id' => 7,
                 'is_active' => 1
             ],
             [
                 'id_user' => rand(1, 99999999999),
-                'name' => 'admin',
+                'name' => 'Admin',
                 'whatsapp' => '082259666646',
                 'email' => 'admin@gmail.com',
                 'password' => password_hash("1234", PASSWORD_DEFAULT),
@@ -52,7 +63,7 @@ class UserSeeder extends Seeder
                 'whatsapp' => '082259666646',
                 'email' => 'bhpmakassar@gmail.com',
                 'password' => password_hash("1234", PASSWORD_DEFAULT),
-                'role_id' => 3,
+                'role_id' => 5,
                 'is_active' => 1
             ],
 

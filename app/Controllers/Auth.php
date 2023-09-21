@@ -75,21 +75,22 @@ class Auth extends BaseController
                             'role_id' => $user['role_id'],
                         ];
                         //simpan session data
+
                         $session->set($data);
                         if ($user['role_id'] == 1) {
                             $this->logmodel->insert(['id_uniq_user' => $data['id_uniq_user'], 'action' => 'Login']);
                             return redirect()->to('admin');
                         }
-                        if ($user['role_id'] == 2) {
-                            $this->logmodel->insert(['id_uniq_user' => $data['id_uniq_user'], 'action' => 'Login']);
-                            return redirect()->to('pta');
-                        }
-                        if ($user['role_id'] == 3) {
+                        if ($user['role_id'] == 5) {
                             $this->logmodel->insert(['id_uniq_user' => $data['id_uniq_user'], 'action' => 'Login']);
                             return redirect()->to('bhp');
-                        } else {
+                        }
+                        if ($user['role_id'] == 6) {
                             $this->logmodel->insert(['id_uniq_user' => $data['id_uniq_user'], 'action' => 'Login']);
                             return redirect()->to('user');
+                        } else {
+                            $this->logmodel->insert(['id_uniq_user' => $data['id_uniq_user'], 'action' => 'Login']);
+                            return redirect()->to('pta');
                         }
                     } else {
                         $session->setFlashdata('message', 'Maaf Password yang anda masukkan Salah !');
