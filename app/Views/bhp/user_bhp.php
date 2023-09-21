@@ -110,8 +110,7 @@ $session = session();
                             <th>Satker</th>
                             <th>No. Penetapan</th>
                             <th>Tgl Upload</th>
-                            <th>Aksi</th>
-                            <th>Info</th>
+                            <th>Berita Acara</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -119,14 +118,14 @@ $session = session();
                         <?php foreach ($penetapan as $p) : ?>
                             <tr>
                                 <td><?= $i ?></td>
-                                <td><?= $p['nama'] ?></td>
+                                <td><?= $p['name'] ?></td>
                                 <td><?= $p['nomor_penetapan'] ?></td>
                                 <td><?= $p['tgl_upload'] ?></td>
                                 <td>
-                                    <a href="file/<?= $p['penetapan_uniq'] ?>" class="btn btn-sm btn-outline-primary">View</a>
-                                    <a href="<?= 'bhp/add/' . $p['penetapan_uniq'] ?>" class="btn btn-sm btn-outline-warning">Upload B.A</a>
+                                    <a href="file/<?= $p['id_penetapan'] ?>" class="btn btn-sm btn-outline-primary">View</a>
+                                    <a href="<?= 'bhp/add/' . $p['id_penetapan'] ?>" class="btn btn-sm btn-outline-warning">Upload B.A</a>
                                     <?php if ($p['status'] == 2) : ?>
-                                        <a href="<?= 'file/' . $p['penetapan_uniq'] . '/' . $p['id_uniq_user'] . '/delete' ?>" class="btn btn-sm btn-outline-danger tmblDelete">Delete B.A</a>
+                                        <a href="<?= 'file/' . $p['id_penetapan'] . '/' . $p['id_user'] . '/delete' ?>" class="btn btn-sm btn-outline-danger tmblDelete">Delete B.A</a>
                                     <?php endif ?>
                                 </td>
                                 <td>
@@ -163,7 +162,7 @@ $session = session();
         data: {
             labels: [],
             datasets: [{
-                label: "Upload Putusan",
+                label: "Rangkuman Penetapan",
                 tension: 0.4,
                 borderWidth: 0,
                 pointRadius: 0,
@@ -233,6 +232,7 @@ $session = session();
         },
     });
     //ajax for chart
+    console.log('before success');
     $.ajax({
         type: "GET",
         url: "http://localhost:8080/user/view",
