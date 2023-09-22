@@ -53,6 +53,12 @@ class PenetapanModel extends Model
         $query = "SELECT * FROM `penetapan` WHERE id_user = $id_user AND month(tgl_upload) = $bulan";
         return $db->query($query)->getNumRows();
     }
+    public function SumDataAllPA($bulan)
+    {
+        $db = db_connect();
+        $query = "SELECT * FROM `penetapan` WHERE month(tgl_upload) = $bulan";
+        return $db->query($query)->getNumRows();
+    }
 
     public function bhpGetDataAll()
     {

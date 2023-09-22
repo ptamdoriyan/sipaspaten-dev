@@ -59,4 +59,18 @@ class Bhp extends BaseController
         // die;
         return $this->response->download('uploads/berita_acara/' . $data['nama_file_ba'], null)->setFileName('berita_acara_' . $data['tgl_upload'] . '.pdf');
     }
+
+    public function viewAllPa()
+    {
+        $penetapanModel = new PenetapanModel();
+        $id_user = session('id_user');
+
+        for ($i = 0; $i < 4; $i++) {
+            // # code...
+            $tanggaljudul = date('M', strtotime("+$i month"));
+            $tanggalisi = date("m") + $i;
+            $hasilhitung[$tanggaljudul] = $penetapanModel->SumDataAllPA($tanggalisi);
+        }
+        return json_encode($hasilhitung);
+    }
 }

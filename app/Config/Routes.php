@@ -23,3 +23,4 @@ $routes->get('file/(:num)/(:num)/delete', 'User::delete/$1/$2');
 $routes->get('bhp', 'Bhp');
 $routes->get('bhp/add/(:any)', 'Bhp::addData/$1');
 $routes->put('bhp/bhputusan', 'Bhp::bhPutusan');
+$routes->get('bhp/view', 'Bhp::viewAllPa');

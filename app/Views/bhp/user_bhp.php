@@ -97,12 +97,12 @@ $session = session();
 <div class="row mt-4" id="showdata">
     <div class="col mb-lg-0 mb-4">
         <div class="card ">
-            <div class="card-header pb-0 p-3">
+            <div class="card-header pb-0 p-4">
                 <div class="d-flex justify-content-between">
                     <h6 class="mb-2">Daftar Penetapan</h6>
                 </div>
             </div>
-            <div class="table-responsive">
+            <div class="table-responsive p-3">
                 <table class="table align-item-center" id="myTable">
                     <thead>
                         <tr>
@@ -110,7 +110,9 @@ $session = session();
                             <th>Satker</th>
                             <th>No. Penetapan</th>
                             <th>Tgl Upload</th>
-                            <th>Berita Acara</th>
+                            <th>File Penetapan</th>
+                            <th>File Berita Acara</th>
+                            <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -121,6 +123,7 @@ $session = session();
                                 <td><?= $p['name'] ?></td>
                                 <td><?= $p['nomor_penetapan'] ?></td>
                                 <td><?= $p['tgl_upload'] ?></td>
+                                <td>Download</td>
                                 <td>
                                     <a href="file/<?= $p['id_penetapan'] ?>" class="btn btn-sm btn-outline-primary">View</a>
                                     <a href="<?= 'bhp/add/' . $p['id_penetapan'] ?>" class="btn btn-sm btn-outline-warning">Upload B.A</a>
@@ -232,14 +235,12 @@ $session = session();
         },
     });
     //ajax for chart
-    console.log('before success');
     $.ajax({
         type: "GET",
-        url: "http://localhost:8080/user/view",
+        url: "http://localhost:8080/bhp/view",
         data: "data",
         dataType: "json",
         success: function(response) {
-            console.log(response);
             $.each(response, function(i, val) {
                 myChart.data.labels.push(i);
                 myChart.data.datasets[0].data.push(val);
