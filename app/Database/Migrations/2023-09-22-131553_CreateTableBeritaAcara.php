@@ -12,7 +12,7 @@ class CreateTableBeritaAcara extends Migration
         //
         $this->forge->addField(
             [
-                'id_berita_accara'          => [
+                'id_berita_acara'          => [
                     'type'           => 'BIGINT',
                     'unsigned'       => true,
                 ],
