@@ -16,7 +16,10 @@ $routes->get('profile', 'Profile');
 $routes->put('profile/editpassword', 'Profile::editPassword');
 $routes->put('profile/editprofile', 'Profile::editProfile');
 $routes->get('file/(:num)', 'User::Download/$1');
-$routes->get('file/(:num)/(:num)/delete', 'User::delete/$1/$2');
+
+$routes->get('file/(:num)/(:num)/delete', 'Files::delPenetapan/$1/$2');
+$routes->get('downloads/penetapan/(:num)', 'Files::getPenetapan/$1');
+$routes->get('downloads/ba/(:num)', 'Files::getBeritaAcara/$1');
 
 
 //bhp

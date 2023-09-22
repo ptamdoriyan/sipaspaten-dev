@@ -123,7 +123,9 @@ $session = session();
                                 <td><?= $p['name'] ?></td>
                                 <td><?= $p['nomor_penetapan'] ?></td>
                                 <td><?= $p['tgl_upload'] ?></td>
-                                <td>Download</td>
+                                <td>
+                                    <a href="/downloads/penetapan/<?= $p['id_penetapan'] ?>" class="text-info">Download</a>
+                                </td>
                                 <td>
                                     <a href="file/<?= $p['id_penetapan'] ?>" class="btn btn-sm btn-outline-primary">View</a>
                                     <a href="<?= 'bhp/add/' . $p['id_penetapan'] ?>" class="btn btn-sm btn-outline-warning">Upload B.A</a>
