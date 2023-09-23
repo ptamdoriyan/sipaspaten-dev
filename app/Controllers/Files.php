@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Models\PenetapanModel;
 use App\Models\UsersModel;
+use App\Models\BeritaAcara;
 
 
 class Files extends BaseController
@@ -32,5 +33,31 @@ class Files extends BaseController
         $waBhp = $userModel->getWhatsapp(5);
         sendMessage("$waPanitera,$waPanmud,$waBhp", session('name'), 'Menghapus Penetapan');
         return redirect()->to('user');
+    }
+
+
+    function getBerita($id_penetapan)
+    {
+        $beritaModel = new BeritaAcara();
+        $data = $beritaModel->where('id_penetapan', $id_penetapan)->first();
+        return $this->response->download('uploads/berita_acara/' . $data['nama_file_berita'], null)->setFileName($data['nomor_berita'] . '_' . $data['tgl_upload'] . '.pdf');
+    }
+
+    //hapus penetapan
+    public function delBerita($id_penetapan, $id_user)
+    {
+        $beritaModel = new BeritaAcara();
+        $userModel = new UsersModel();
+
+        $beritaModel->where('id_penetapan', $id_penetapan)->delete();
+        $this->logmodel->insert(['id_user' => session('id_user'), 'action' => "Delete Berita Acara Nomor "]);
+        // session
+        $this->session->setFlashdata('message', 'Dihapus');
+        // kirim WA
+        $waPanitera = $userModel->getWhatsapp(3);
+        $waPanmud = $userModel->getWhatsapp(4);
+        $waSatker = $userModel->getWhatsappbyid($id_user);
+        sendMessage("$waPanitera,$waPanmud,$waSatker", session('name'), 'Menghapus Berita Acara');
+        return redirect()->to('/bhp');
     }
 }

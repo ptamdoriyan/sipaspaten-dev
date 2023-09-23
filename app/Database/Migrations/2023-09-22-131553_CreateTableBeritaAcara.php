@@ -12,18 +12,18 @@ class CreateTableBeritaAcara extends Migration
         //
         $this->forge->addField(
             [
-                'id_berita_acara'          => [
+                'id_berita'          => [
                     'type'           => 'BIGINT',
                     'unsigned'       => true,
                 ],
                 'id_penetapan'          => [
                     'type'           => 'BIGINT',
                 ],
-                'nomor_penetapan'       => [
+                'nomor_berita'       => [
                     'type'           => 'VARCHAR',
                     'constraint'     => '100'
                 ],
-                'nama_file_penetapan'       => [
+                'nama_file_berita'       => [
                     'type'           => 'VARCHAR',
                     'constraint'     => '255'
                 ],
@@ -33,7 +33,7 @@ class CreateTableBeritaAcara extends Migration
                 ],
             ]
         );
-        $this->forge->addKey('id_berita_acara', true);
+        $this->forge->addKey('id_berita', true);
         $this->forge->createTable('berita_acara', true);
     }
 

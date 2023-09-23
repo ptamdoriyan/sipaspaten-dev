@@ -124,13 +124,16 @@ $session = session();
                                 <td><?= $p['nomor_penetapan'] ?></td>
                                 <td><?= $p['tgl_upload'] ?></td>
                                 <td>
-                                    <a href="/downloads/penetapan/<?= $p['id_penetapan'] ?>" class="text-info">Download</a>
+                                    <a href="/downloads/penetapan/<?= $p['id_penetapan'] ?>" class="btn btn-sm btn-outline-info">Download</a>
                                 </td>
                                 <td>
-                                    <a href="file/<?= $p['id_penetapan'] ?>" class="btn btn-sm btn-outline-primary">View</a>
-                                    <a href="<?= 'bhp/add/' . $p['id_penetapan'] ?>" class="btn btn-sm btn-outline-warning">Upload B.A</a>
                                     <?php if ($p['status'] == 2) : ?>
-                                        <a href="<?= 'file/' . $p['id_penetapan'] . '/' . $p['id_user'] . '/delete' ?>" class="btn btn-sm btn-outline-danger tmblDelete">Delete B.A</a>
+                                        <a href="fileberita/<?= $p['id_penetapan'] ?>" class="btn btn-sm btn-outline-primary">View B.A</a>
+                                    <?php else : ?>
+                                        <a href="<?= 'bhp/add/' . $p['id_penetapan'] ?>" class="btn btn-sm btn-outline-warning">Upload B.A</a>
+                                    <?php endif ?>
+                                    <?php if ($p['status'] == 2) : ?>
+                                        <a href="<?= 'fileberita/' . $p['id_penetapan'] . '/' . $p['id_user'] . '/delete' ?>" class="btn btn-sm btn-outline-danger tmblDelete">Delete B.A</a>
                                     <?php endif ?>
                                 </td>
                                 <td>
