@@ -10,6 +10,13 @@ use App\Models\BeritaAcara;
 
 class Files extends BaseController
 {
+    public function __construct()
+    {
+        if (session('id_user') == null) {
+            header('Location: ' . base_url('/'));
+            exit();
+        }
+    }
 
     function getPenetapan($id_penetapan)
     {
