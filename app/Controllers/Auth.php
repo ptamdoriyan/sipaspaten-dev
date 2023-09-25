@@ -47,7 +47,7 @@ class Auth extends BaseController
                 break;
         }
         //
-        return view('auth/login_view');
+        return view('auth/Login_view');
     }
 
     public function login()
