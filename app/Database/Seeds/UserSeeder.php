@@ -11,13 +11,9 @@ class UserSeeder extends Seeder
         //membuat data seed
         #--------------
         // Admin 1
-        // Hakim - 2
-        // Panitera - 3
-        // Panmud - 4
-        // BHP - 5
-        // Admin PA - 6 
-        // User PTA - 7
-
+        // PTA/Hakim/Panitera/Panmud 2
+        // Pa Se Wilayah 3
+        // BHP - 4
         #---------------------
 
         $users = [
@@ -27,7 +23,7 @@ class UserSeeder extends Seeder
                 'whatsapp' => '082346909192',
                 'email' => 'pabitung@gmail.com',
                 'password' => password_hash('1234', PASSWORD_DEFAULT),
-                'role_id' => 6,
+                'role_id' => 3,
                 'is_active' => 1
             ],
             [
@@ -36,7 +32,7 @@ class UserSeeder extends Seeder
                 'whatsapp' => '082259666646',
                 'email' => 'paboroko@gmail.com',
                 'password' => password_hash('1234', PASSWORD_DEFAULT),
-                'role_id' => 6,
+                'role_id' => 3,
                 'is_active' => 1
             ],
             [
@@ -45,7 +41,7 @@ class UserSeeder extends Seeder
                 'whatsapp' => '082259666646',
                 'email' => 'ptamanado@gmail.com',
                 'password' => password_hash("1234", PASSWORD_DEFAULT),
-                'role_id' => 7,
+                'role_id' => 2,
                 'is_active' => 1
             ],
             [
@@ -63,7 +59,7 @@ class UserSeeder extends Seeder
                 'whatsapp' => '082259666646',
                 'email' => 'panitera@gmail.com',
                 'password' => password_hash("1234", PASSWORD_DEFAULT),
-                'role_id' => 3,
+                'role_id' => 2,
                 'is_active' => 1
             ],
             [
@@ -72,7 +68,7 @@ class UserSeeder extends Seeder
                 'whatsapp' => '082346909192',
                 'email' => 'panmud@gmail.com',
                 'password' => password_hash("1234", PASSWORD_DEFAULT),
-                'role_id' => 4,
+                'role_id' => 2,
                 'is_active' => 1
             ],
             [
@@ -81,7 +77,7 @@ class UserSeeder extends Seeder
                 'whatsapp' => '085398613031',
                 'email' => 'bhpmakassar@gmail.com',
                 'password' => password_hash("1234", PASSWORD_DEFAULT),
-                'role_id' => 5,
+                'role_id' => 4,
                 'is_active' => 1
             ],
 

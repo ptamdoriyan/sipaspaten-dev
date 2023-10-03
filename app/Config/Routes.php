@@ -36,3 +36,7 @@ $routes->post('bhp/upload', 'Bhp::addBerita');
 
 //pta
 $routes->get('pta', 'Pta');
+$routes->get('pta/view', 'Pta::viewAllPa');
+
+//admin
+$routes->get('admin', 'Admin');
