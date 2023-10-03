@@ -22,28 +22,15 @@ class Auth extends BaseController
                 break;
             case '3':
                 # code...
-                return redirect()->to('pta');
+                return redirect()->to('user');
                 break;
             case '4':
                 # code...
-                return redirect()->to('pta');
-                break;
-            case '5':
-                # code...
                 return redirect()->to('bhp');
                 break;
-            case '6':
-                # code...
-                return redirect()->to('user');
-                break;
-            case '7':
-                # code...
-                return redirect()->to('pta');
-                break;
-
+            
             default:
                 # code...
-
                 break;
         }
         //

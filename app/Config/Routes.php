@@ -1,5 +1,6 @@
 <?php
 
+use CodeIgniter\Commands\Utilities\Routes;
 use CodeIgniter\Router\RouteCollection;
 
 /**
@@ -32,3 +33,6 @@ $routes->get('bhp', 'Bhp');
 $routes->get('bhp/add/(:any)', 'Bhp::addData/$1');
 $routes->get('bhp/view', 'Bhp::viewAllPa');
 $routes->post('bhp/upload', 'Bhp::addBerita');
+
+//pta
+$routes->get('pta', 'Pta');

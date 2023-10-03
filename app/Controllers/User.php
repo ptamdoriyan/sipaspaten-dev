@@ -14,7 +14,7 @@ class User extends BaseController
     {
 
         helper(['whatsapp_helper', 'login_helper']);
-        checkLogin(6, session('role_id'));
+        checkLogin(3, session('role_id'));
     }
 
     public function index()

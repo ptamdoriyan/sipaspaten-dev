@@ -13,7 +13,7 @@ class Bhp extends BaseController
     public function __construct()
     {
         helper(['whatsapp_helper', 'login_helper']);
-        checkLogin(5, session('role_id'));
+        checkLogin(4, session('role_id'));
     }
 
     //method index. sebagai tampilan awal.
