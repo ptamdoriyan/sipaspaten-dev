@@ -40,3 +40,5 @@ $routes->get('pta/view', 'Pta::viewAllPa');
 
 //admin
 $routes->get('admin', 'Admin');
+$routes->get('admin/view', 'Admin::viewAllPa');
+$routes->get('admin/user', 'Admin::user_management');
