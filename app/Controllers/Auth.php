@@ -28,7 +28,7 @@ class Auth extends BaseController
                 # code...
                 return redirect()->to('bhp');
                 break;
-            
+
             default:
                 # code...
                 break;
@@ -119,6 +119,7 @@ class Auth extends BaseController
             'id_uniq',
         ];
         $this->session->remove($data);
+        $this->logmodel->insert(['id_user' => session('id_user'), 'action' => 'Logout']);
         return redirect()->to('/');
     }
 }

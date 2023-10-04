@@ -41,4 +41,9 @@ $routes->get('pta/view', 'Pta::viewAllPa');
 //admin
 $routes->get('admin', 'Admin');
 $routes->get('admin/view', 'Admin::viewAllPa');
-$routes->get('admin/user', 'Admin::user_management');
+$routes->get('admin/user', 'Admin::user_view');
+$routes->post('admin/reset', 'Admin::resetPassword');
+$routes->post('admin/useroff', 'Admin::userOff');
+$routes->post('admin/useron', 'Admin::userOn');
+$routes->post('admin/adduser', 'Admin::addUser');
+$routes->get('admin/user_detail/(:num)', 'Admin::userDetail/$1');
